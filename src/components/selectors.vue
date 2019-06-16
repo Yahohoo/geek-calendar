@@ -2,24 +2,24 @@
   <div class="selectors">
     <selector
       v-for="selector in selectors"
+      :key="selector.name"
       :selections="selector.selections"
       :category="selector.category"
-      :key="selector.name"
       :label="selector.name"
     />
   </div>
 </template>
 
 <script>
-import selector from './selector'
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
+import selector from './selector';
 
 export default {
   components: { selector },
   computed: {
     ...mapGetters(['selectors']),
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -29,4 +29,3 @@ export default {
     justify-content: center;
   }
 </style>
-

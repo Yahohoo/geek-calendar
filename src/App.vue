@@ -1,20 +1,20 @@
 <template>
   <div class="calendar-app">
-    <modal/>
-    <selectors/>
-    <control-panel/>
-    <events-grid/>
+    <modal />
+    <selectors />
+    <control-panel />
+    <events-grid />
   </div>
 </template>
 
 <script>
-import modal from './components/modal.vue'
-import selectors from './components/selectors'
-import controlPanel from './components/control-panel.vue'
-import eventsGrid from './components/events-grid.vue'
-import schedule from './data.js'
-import Vue from 'vue'
-import { mapActions } from 'vuex'
+import Vue from 'vue';
+import { mapActions } from 'vuex';
+import modal from './components/modal.vue';
+import selectors from './components/selectors';
+import controlPanel from './components/control-panel.vue';
+import eventsGrid from './components/events-grid.vue';
+import schedule from './data.js';
 
 export default {
   name: 'App',
@@ -23,26 +23,17 @@ export default {
     modal,
     selectors,
     controlPanel,
-    eventsGrid
-  },
-
-  computed: {
-    filteredSchedule() {
-      var filtered = this.schedule.filter(lesson => {
-        return Object.values(lesson._filters).every(el => el)
-      })
-      return filtered
-    }
+    eventsGrid,
   },
 
   created() {
-    this.loadDataForWeek()
+    this.loadDataForWeek();
   },
 
   methods: {
-    ...mapActions(['loadDataForWeek'])
-  }
-}
+    ...mapActions(['loadDataForWeek']),
+  },
+};
 </script>
 
 <style lang="scss">
@@ -59,7 +50,7 @@ body {
   @import url('https://fonts.googleapis.com/css?family=Open+Sans');
   font-family: 'Ubuntu', sans-serif;
   color: #212121;
-  max-width: 1200px;
+  // max-width: 1200px;
   margin: auto;
   padding: 5px;
 }
@@ -91,5 +82,148 @@ $themes: (
   cursor: pointer;
   padding: 10px;
   font-weight: bold;
+}
+</style>
+
+<style lang=scss>
+// загрузка в сетке
+.lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 32px 32px;
+}
+
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: lightblue;
+  margin: -3px 0 0 -3px;
+}
+
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+
+.lds-roller div:nth-child(1):after {
+  top: 50px;
+  left: 50px;
+}
+
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+
+.lds-roller div:nth-child(2):after {
+  top: 54px;
+  left: 45px;
+}
+
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+
+.lds-roller div:nth-child(3):after {
+  top: 57px;
+  left: 39px;
+}
+
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+
+.lds-roller div:nth-child(4):after {
+  top: 58px;
+  left: 32px;
+}
+
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+
+.lds-roller div:nth-child(5):after {
+  top: 57px;
+  left: 25px;
+}
+
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+
+.lds-roller div:nth-child(6):after {
+  top: 54px;
+  left: 19px;
+}
+
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+
+.lds-roller div:nth-child(7):after {
+  top: 50px;
+  left: 14px;
+}
+
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+
+.lds-roller div:nth-child(8):after {
+  top: 45px;
+  left: 10px;
+}
+
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+// запись активна
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+
+.lds-ripple div {
+  position: absolute;
+  border: 2px solid lightblue;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+  0% {
+    top: 10px;
+    left: 10px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+  }
 }
 </style>

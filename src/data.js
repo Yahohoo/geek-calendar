@@ -1,4 +1,4 @@
-var schedule = [
+const schedule = [
   {
     id: 21424,
     name: 'Занятие 31',
@@ -21,10 +21,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Ситдикова Камилла'],
-    teacher: { name: 'Ситдикова Камилла', bio: '', avatar: '' }
+    teacher: { name: 'Ситдикова Камилла', bio: '', avatar: '' },
   },
   {
     id: 21460,
@@ -48,10 +48,10 @@ var schedule = [
       minClass: null,
       maxClass: null,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Кушнерев Олег'],
-    teacher: { name: 'Кушнерев Олег', bio: '', avatar: '' }
+    teacher: { name: 'Кушнерев Олег', bio: '', avatar: '' },
   },
   {
     id: 21388,
@@ -75,10 +75,10 @@ var schedule = [
       minClass: 5,
       maxClass: 7,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Рудов Дмитрий '],
-    teacher: { name: 'Рудов Дмитрий ', bio: '', avatar: '' }
+    teacher: { name: 'Рудов Дмитрий ', bio: '', avatar: '' },
   },
   {
     id: 21496,
@@ -102,10 +102,10 @@ var schedule = [
       minClass: null,
       maxClass: null,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Кушнерев Олег'],
-    teacher: { name: 'Кушнерев Олег', bio: '', avatar: '' }
+    teacher: { name: 'Кушнерев Олег', bio: '', avatar: '' },
   },
   {
     id: 25912,
@@ -129,10 +129,10 @@ var schedule = [
       minClass: 1,
       maxClass: 4,
       minAge: 7,
-      maxAge: 11
+      maxAge: 11,
     },
     teachersName: ['Погребняк Надежда '],
-    teacher: { name: 'Погребняк Надежда ', bio: '', avatar: '' }
+    teacher: { name: 'Погребняк Надежда ', bio: '', avatar: '' },
   },
   {
     id: 25936,
@@ -156,10 +156,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: 8,
-      maxAge: 11
+      maxAge: 11,
     },
     teachersName: [' Фёдоров Александр'],
-    teacher: { name: ' Фёдоров Александр', bio: '', avatar: '' }
+    teacher: { name: ' Фёдоров Александр', bio: '', avatar: '' },
   },
   {
     id: 26449,
@@ -182,10 +182,10 @@ var schedule = [
       minClass: 1,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Сербаев Даниил '],
-    teacher: { name: 'Сербаев Даниил ', bio: '', avatar: '' }
+    teacher: { name: 'Сербаев Даниил ', bio: '', avatar: '' },
   },
   {
     id: 21640,
@@ -209,10 +209,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Стегура Никита'],
-    teacher: { name: 'Стегура Никита', bio: '', avatar: '' }
+    teacher: { name: 'Стегура Никита', bio: '', avatar: '' },
   },
   {
     id: 25874,
@@ -235,10 +235,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: 9,
-      maxAge: 11
+      maxAge: 11,
     },
     teachersName: ['Погребняк Надежда '],
-    teacher: { name: 'Погребняк Надежда ', bio: '', avatar: '' }
+    teacher: { name: 'Погребняк Надежда ', bio: '', avatar: '' },
   },
   {
     id: 21532,
@@ -262,10 +262,10 @@ var schedule = [
       minClass: 5,
       maxClass: 11,
       minAge: 12,
-      maxAge: 18
+      maxAge: 18,
     },
     teachersName: ['Сербаев Даниил '],
-    teacher: { name: 'Сербаев Даниил ', bio: '', avatar: '' }
+    teacher: { name: 'Сербаев Даниил ', bio: '', avatar: '' },
   },
   {
     id: 21820,
@@ -289,10 +289,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Зайцев Антон '],
-    teacher: { name: 'Зайцев Антон ', bio: '', avatar: '' }
+    teacher: { name: 'Зайцев Антон ', bio: '', avatar: '' },
   },
   {
     id: 21676,
@@ -316,10 +316,10 @@ var schedule = [
       minClass: 5,
       maxClass: 10,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Рудов Дмитрий '],
-    teacher: { name: 'Рудов Дмитрий ', bio: '', avatar: '' }
+    teacher: { name: 'Рудов Дмитрий ', bio: '', avatar: '' },
   },
   {
     id: 28448,
@@ -344,10 +344,10 @@ var schedule = [
       minClass: 1,
       maxClass: 3,
       minAge: 6,
-      maxAge: 10
+      maxAge: 10,
     },
     teachersName: ['Ильина Екатерина'],
-    teacher: { name: 'Ильина Екатерина', bio: '', avatar: '' }
+    teacher: { name: 'Ильина Екатерина', bio: '', avatar: '' },
   },
   {
     id: 28202,
@@ -371,10 +371,10 @@ var schedule = [
       minClass: 3,
       maxClass: 3,
       minAge: 8,
-      maxAge: 10
+      maxAge: 10,
     },
     teachersName: ['Изотова Анастасия'],
-    teacher: { name: 'Изотова Анастасия', bio: '', avatar: '' }
+    teacher: { name: 'Изотова Анастасия', bio: '', avatar: '' },
   },
   {
     id: 21568,
@@ -398,10 +398,10 @@ var schedule = [
       minClass: 1,
       maxClass: 4,
       minAge: 7,
-      maxAge: 12
+      maxAge: 12,
     },
     teachersName: ['Сербаев Даниил '],
-    teacher: { name: 'Сербаев Даниил ', bio: '', avatar: '' }
+    teacher: { name: 'Сербаев Даниил ', bio: '', avatar: '' },
   },
   {
     id: 26489,
@@ -425,10 +425,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Стегура Никита'],
-    teacher: { name: 'Стегура Никита', bio: '', avatar: '' }
+    teacher: { name: 'Стегура Никита', bio: '', avatar: '' },
   },
   {
     id: 25981,
@@ -451,10 +451,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Погребняк Надежда '],
-    teacher: { name: 'Погребняк Надежда ', bio: '', avatar: '' }
+    teacher: { name: 'Погребняк Надежда ', bio: '', avatar: '' },
   },
   {
     id: 22036,
@@ -478,10 +478,10 @@ var schedule = [
       minClass: 2,
       maxClass: 2,
       minAge: 6,
-      maxAge: 8
+      maxAge: 8,
     },
     teachersName: [' Салахетдинов Руслан'],
-    teacher: { name: ' Салахетдинов Руслан', bio: '', avatar: '' }
+    teacher: { name: ' Салахетдинов Руслан', bio: '', avatar: '' },
   },
   {
     id: 28447,
@@ -506,10 +506,10 @@ var schedule = [
       minClass: 1,
       maxClass: 10,
       minAge: 7,
-      maxAge: 17
+      maxAge: 17,
     },
     teachersName: ['Бувина Юлия'],
-    teacher: { name: 'Бувина Юлия', bio: '', avatar: '' }
+    teacher: { name: 'Бувина Юлия', bio: '', avatar: '' },
   },
   {
     id: 21604,
@@ -533,10 +533,10 @@ var schedule = [
       minClass: 5,
       maxClass: 10,
       minAge: 12,
-      maxAge: 18
+      maxAge: 18,
     },
     teachersName: ['Сербаев Даниил '],
-    teacher: { name: 'Сербаев Даниил ', bio: '', avatar: '' }
+    teacher: { name: 'Сербаев Даниил ', bio: '', avatar: '' },
   },
   {
     id: 26006,
@@ -560,10 +560,10 @@ var schedule = [
       minClass: 2,
       maxClass: 3,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: [' Фёдоров Александр'],
-    teacher: { name: ' Фёдоров Александр', bio: '', avatar: '' }
+    teacher: { name: ' Фёдоров Александр', bio: '', avatar: '' },
   },
   {
     id: 21928,
@@ -587,10 +587,10 @@ var schedule = [
       minClass: null,
       maxClass: null,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Кушнерев Олег'],
-    teacher: { name: 'Кушнерев Олег', bio: '', avatar: '' }
+    teacher: { name: 'Кушнерев Олег', bio: '', avatar: '' },
   },
   {
     id: 21964,
@@ -614,10 +614,10 @@ var schedule = [
       minClass: null,
       maxClass: null,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Кушнерев Олег'],
-    teacher: { name: 'Кушнерев Олег', bio: '', avatar: '' }
+    teacher: { name: 'Кушнерев Олег', bio: '', avatar: '' },
   },
   {
     id: 27854,
@@ -640,10 +640,10 @@ var schedule = [
       minClass: 7,
       maxClass: 11,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Никита Гнилозуб-Волобуев'],
-    teacher: { name: 'Никита Гнилозуб-Волобуев', bio: '', avatar: '' }
+    teacher: { name: 'Никита Гнилозуб-Волобуев', bio: '', avatar: '' },
   },
   {
     id: 27642,
@@ -666,14 +666,14 @@ var schedule = [
       minClass: 7,
       maxClass: 11,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: [' Ростислав Бородин'],
     teacher: {
       name: ' Ростислав Бородин',
       bio: '',
-      avatar: 'http://class.roctbb.net'
-    }
+      avatar: 'http://class.roctbb.net',
+    },
   },
   {
     id: 28468,
@@ -698,10 +698,10 @@ var schedule = [
       minClass: 1,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Бувина Юлия'],
-    teacher: { name: 'Бувина Юлия', bio: '', avatar: '' }
+    teacher: { name: 'Бувина Юлия', bio: '', avatar: '' },
   },
   {
     id: 26035,
@@ -725,10 +725,10 @@ var schedule = [
       minClass: 0,
       maxClass: 1,
       minAge: 6,
-      maxAge: 7
+      maxAge: 7,
     },
     teachersName: [' Салахетдинов Руслан'],
-    teacher: { name: ' Салахетдинов Руслан', bio: '', avatar: '' }
+    teacher: { name: ' Салахетдинов Руслан', bio: '', avatar: '' },
   },
   {
     id: 28348,
@@ -752,10 +752,10 @@ var schedule = [
       minClass: null,
       maxClass: null,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Оборин Федор'],
-    teacher: { name: 'Оборин Федор', bio: '', avatar: '' }
+    teacher: { name: 'Оборин Федор', bio: '', avatar: '' },
   },
   {
     id: 26759,
@@ -779,10 +779,10 @@ var schedule = [
       minClass: 5,
       maxClass: 10,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Рудов Дмитрий '],
-    teacher: { name: 'Рудов Дмитрий ', bio: '', avatar: '' }
+    teacher: { name: 'Рудов Дмитрий ', bio: '', avatar: '' },
   },
   {
     id: 28329,
@@ -805,14 +805,14 @@ var schedule = [
       minClass: 7,
       maxClass: 11,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: [' Ростислав Бородин'],
     teacher: {
       name: ' Ростислав Бородин',
       bio: '',
-      avatar: 'http://class.roctbb.net'
-    }
+      avatar: 'http://class.roctbb.net',
+    },
   },
   {
     id: 26055,
@@ -836,10 +836,10 @@ var schedule = [
       minClass: 1,
       maxClass: 1,
       minAge: 6,
-      maxAge: 7
+      maxAge: 7,
     },
     teachersName: [' Салахетдинов Руслан'],
-    teacher: { name: ' Салахетдинов Руслан', bio: '', avatar: '' }
+    teacher: { name: ' Салахетдинов Руслан', bio: '', avatar: '' },
   },
   {
     id: 26075,
@@ -863,10 +863,10 @@ var schedule = [
       minClass: 5,
       maxClass: 11,
       minAge: 12,
-      maxAge: 18
+      maxAge: 18,
     },
     teachersName: ['Сербаев Даниил '],
-    teacher: { name: 'Сербаев Даниил ', bio: '', avatar: '' }
+    teacher: { name: 'Сербаев Даниил ', bio: '', avatar: '' },
   },
   {
     id: 22000,
@@ -890,10 +890,10 @@ var schedule = [
       minClass: null,
       maxClass: null,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Кушнерев Олег'],
-    teacher: { name: 'Кушнерев Олег', bio: '', avatar: '' }
+    teacher: { name: 'Кушнерев Олег', bio: '', avatar: '' },
   },
   {
     id: 27892,
@@ -916,10 +916,10 @@ var schedule = [
       minClass: 7,
       maxClass: 11,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Никита Гнилозуб-Волобуев'],
-    teacher: { name: 'Никита Гнилозуб-Волобуев', bio: '', avatar: '' }
+    teacher: { name: 'Никита Гнилозуб-Волобуев', bio: '', avatar: '' },
   },
   {
     id: 26974,
@@ -942,10 +942,10 @@ var schedule = [
       minClass: null,
       maxClass: null,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Сербаев Даниил '],
-    teacher: { name: 'Сербаев Даниил ', bio: '', avatar: '' }
+    teacher: { name: 'Сербаев Даниил ', bio: '', avatar: '' },
   },
   {
     id: 28276,
@@ -969,10 +969,10 @@ var schedule = [
       minClass: 3,
       maxClass: 7,
       minAge: 9,
-      maxAge: 15
+      maxAge: 15,
     },
     teachersName: ['Оборин Федор'],
-    teacher: { name: 'Оборин Федор', bio: '', avatar: '' }
+    teacher: { name: 'Оборин Федор', bio: '', avatar: '' },
   },
   {
     id: 25308,
@@ -995,10 +995,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Погребняк Надежда '],
-    teacher: { name: 'Погребняк Надежда ', bio: '', avatar: '' }
+    teacher: { name: 'Погребняк Надежда ', bio: '', avatar: '' },
   },
   {
     id: 26167,
@@ -1021,10 +1021,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: 7,
-      maxAge: 8
+      maxAge: 8,
     },
     teachersName: [' Щёголева Анастасия'],
-    teacher: { name: ' Щёголева Анастасия', bio: '', avatar: '' }
+    teacher: { name: ' Щёголева Анастасия', bio: '', avatar: '' },
   },
   {
     id: 25343,
@@ -1047,10 +1047,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Погребняк Надежда '],
-    teacher: { name: 'Погребняк Надежда ', bio: '', avatar: '' }
+    teacher: { name: 'Погребняк Надежда ', bio: '', avatar: '' },
   },
   {
     id: 26125,
@@ -1073,10 +1073,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Бувина Юлия'],
-    teacher: { name: 'Бувина Юлия', bio: '', avatar: '' }
+    teacher: { name: 'Бувина Юлия', bio: '', avatar: '' },
   },
   {
     id: 26147,
@@ -1100,10 +1100,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Козенбаева Юлиана'],
-    teacher: { name: 'Козенбаева Юлиана', bio: '', avatar: '' }
+    teacher: { name: 'Козенбаева Юлиана', bio: '', avatar: '' },
   },
   {
     id: 26107,
@@ -1127,10 +1127,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Оборин Федор'],
-    teacher: { name: 'Оборин Федор', bio: '', avatar: '' }
+    teacher: { name: 'Оборин Федор', bio: '', avatar: '' },
   },
   {
     id: 26187,
@@ -1154,10 +1154,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: 6,
-      maxAge: 8
+      maxAge: 8,
     },
     teachersName: ['Бабешкина Елена'],
-    teacher: { name: 'Бабешкина Елена', bio: '', avatar: '' }
+    teacher: { name: 'Бабешкина Елена', bio: '', avatar: '' },
   },
   {
     id: 26245,
@@ -1181,10 +1181,10 @@ var schedule = [
       minClass: 5,
       maxClass: 10,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Оборин Федор'],
-    teacher: { name: 'Оборин Федор', bio: '', avatar: '' }
+    teacher: { name: 'Оборин Федор', bio: '', avatar: '' },
   },
   {
     id: 26589,
@@ -1207,10 +1207,10 @@ var schedule = [
       minClass: 0,
       maxClass: 3,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Кушнерев Олег'],
-    teacher: { name: 'Кушнерев Олег', bio: '', avatar: '' }
+    teacher: { name: 'Кушнерев Олег', bio: '', avatar: '' },
   },
   {
     id: 26207,
@@ -1233,10 +1233,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Рогатых Денис'],
-    teacher: { name: 'Рогатых Денис', bio: '', avatar: '' }
+    teacher: { name: 'Рогатых Денис', bio: '', avatar: '' },
   },
   {
     id: 26265,
@@ -1260,10 +1260,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: 6,
-      maxAge: 8
+      maxAge: 8,
     },
     teachersName: ['Бабешкина Елена'],
-    teacher: { name: 'Бабешкина Елена', bio: '', avatar: '' }
+    teacher: { name: 'Бабешкина Елена', bio: '', avatar: '' },
   },
   {
     id: 27855,
@@ -1286,10 +1286,10 @@ var schedule = [
       minClass: 7,
       maxClass: 11,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Никита Гнилозуб-Волобуев'],
-    teacher: { name: 'Никита Гнилозуб-Волобуев', bio: '', avatar: '' }
+    teacher: { name: 'Никита Гнилозуб-Волобуев', bio: '', avatar: '' },
   },
   {
     id: 26627,
@@ -1312,10 +1312,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Соловьев Дмитрий'],
-    teacher: { name: 'Соловьев Дмитрий', bio: '', avatar: '' }
+    teacher: { name: 'Соловьев Дмитрий', bio: '', avatar: '' },
   },
   {
     id: 27643,
@@ -1338,14 +1338,14 @@ var schedule = [
       minClass: 7,
       maxClass: 11,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: [' Ростислав Бородин'],
     teacher: {
       name: ' Ростислав Бородин',
       bio: '',
-      avatar: 'http://class.roctbb.net'
-    }
+      avatar: 'http://class.roctbb.net',
+    },
   },
   {
     id: 26285,
@@ -1368,10 +1368,10 @@ var schedule = [
       minClass: null,
       maxClass: null,
       minAge: 4,
-      maxAge: 7
+      maxAge: 7,
     },
     teachersName: ['Бабешкина Елена'],
-    teacher: { name: 'Бабешкина Елена', bio: '', avatar: '' }
+    teacher: { name: 'Бабешкина Елена', bio: '', avatar: '' },
   },
   {
     id: 26663,
@@ -1394,10 +1394,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: [' Сахибгареев Булат'],
-    teacher: { name: ' Сахибгареев Булат', bio: '', avatar: '' }
+    teacher: { name: ' Сахибгареев Булат', bio: '', avatar: '' },
   },
   {
     id: 27718,
@@ -1420,14 +1420,14 @@ var schedule = [
       minClass: 7,
       maxClass: 11,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: [' Ростислав Бородин'],
     teacher: {
       name: ' Ростислав Бородин',
       bio: '',
-      avatar: 'http://class.roctbb.net'
-    }
+      avatar: 'http://class.roctbb.net',
+    },
   },
   {
     id: 27893,
@@ -1450,10 +1450,10 @@ var schedule = [
       minClass: 7,
       maxClass: 11,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Никита Гнилозуб-Волобуев'],
-    teacher: { name: 'Никита Гнилозуб-Волобуев', bio: '', avatar: '' }
+    teacher: { name: 'Никита Гнилозуб-Волобуев', bio: '', avatar: '' },
   },
   {
     id: 28229,
@@ -1476,10 +1476,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Козенбаева Юлиана'],
-    teacher: { name: 'Козенбаева Юлиана', bio: '', avatar: '' }
+    teacher: { name: 'Козенбаева Юлиана', bio: '', avatar: '' },
   },
   {
     id: 28234,
@@ -1502,10 +1502,10 @@ var schedule = [
       minClass: 3,
       maxClass: 7,
       minAge: 9,
-      maxAge: 14
+      maxAge: 14,
     },
     teachersName: ['Оборин Федор'],
-    teacher: { name: 'Оборин Федор', bio: '', avatar: '' }
+    teacher: { name: 'Оборин Федор', bio: '', avatar: '' },
   },
   {
     id: 28239,
@@ -1528,10 +1528,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Ситдикова Камилла'],
-    teacher: { name: 'Ситдикова Камилла', bio: '', avatar: '' }
+    teacher: { name: 'Ситдикова Камилла', bio: '', avatar: '' },
   },
   {
     id: 25370,
@@ -1555,10 +1555,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Гришина Виктория '],
-    teacher: { name: 'Гришина Виктория ', bio: '', avatar: '' }
+    teacher: { name: 'Гришина Виктория ', bio: '', avatar: '' },
   },
   {
     id: 28488,
@@ -1581,10 +1581,10 @@ var schedule = [
       minClass: 2,
       maxClass: 2,
       minAge: 8,
-      maxAge: 8
+      maxAge: 8,
     },
     teachersName: ['Погребняк Надежда '],
-    teacher: { name: 'Погребняк Надежда ', bio: '', avatar: '' }
+    teacher: { name: 'Погребняк Надежда ', bio: '', avatar: '' },
   },
   {
     id: 26994,
@@ -1607,7 +1607,7 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Ярыгина Дарья '],
     teacher: {
@@ -1615,8 +1615,8 @@ var schedule = [
       bio:
         'Инженер. Закончила МГТУ им. Баумана в 2018 году. Опыт преподавания с 2015-го года.',
       avatar:
-        'https://static.tildacdn.com/tild3239-6561-4537-a164-613236623366/IMG_0070_1000px.JPG'
-    }
+        'https://static.tildacdn.com/tild3239-6561-4537-a164-613236623366/IMG_0070_1000px.JPG',
+    },
   },
   {
     id: 25390,
@@ -1640,10 +1640,10 @@ var schedule = [
       minClass: null,
       maxClass: null,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Уколов Александр'],
-    teacher: { name: 'Уколов Александр', bio: '', avatar: '' }
+    teacher: { name: 'Уколов Александр', bio: '', avatar: '' },
   },
   {
     id: 25410,
@@ -1666,10 +1666,10 @@ var schedule = [
       minClass: 0,
       maxClass: null,
       minAge: 5,
-      maxAge: 6
+      maxAge: 6,
     },
     teachersName: ['Ситдикова Камилла'],
-    teacher: { name: 'Ситдикова Камилла', bio: '', avatar: '' }
+    teacher: { name: 'Ситдикова Камилла', bio: '', avatar: '' },
   },
   {
     id: 26690,
@@ -1693,10 +1693,10 @@ var schedule = [
       minClass: 5,
       maxClass: 10,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Суетин Никита ', 'Рудов Дмитрий '],
-    teacher: { name: 'Суетин Никита ', bio: '', avatar: '' }
+    teacher: { name: 'Суетин Никита ', bio: '', avatar: '' },
   },
   {
     id: 26806,
@@ -1720,10 +1720,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Ситдикова Камилла'],
-    teacher: { name: 'Ситдикова Камилла', bio: '', avatar: '' }
+    teacher: { name: 'Ситдикова Камилла', bio: '', avatar: '' },
   },
   {
     id: 28230,
@@ -1746,10 +1746,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Козенбаева Юлиана'],
-    teacher: { name: 'Козенбаева Юлиана', bio: '', avatar: '' }
+    teacher: { name: 'Козенбаева Юлиана', bio: '', avatar: '' },
   },
   {
     id: 28235,
@@ -1772,10 +1772,10 @@ var schedule = [
       minClass: 3,
       maxClass: 7,
       minAge: 9,
-      maxAge: 14
+      maxAge: 14,
     },
     teachersName: ['Оборин Федор'],
-    teacher: { name: 'Оборин Федор', bio: '', avatar: '' }
+    teacher: { name: 'Оборин Федор', bio: '', avatar: '' },
   },
   {
     id: 27550,
@@ -1798,10 +1798,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: 7,
-      maxAge: 8
+      maxAge: 8,
     },
     teachersName: ['Гришина Виктория '],
-    teacher: { name: 'Гришина Виктория ', bio: '', avatar: '' }
+    teacher: { name: 'Гришина Виктория ', bio: '', avatar: '' },
   },
   {
     id: 25430,
@@ -1825,10 +1825,10 @@ var schedule = [
       minClass: 1,
       maxClass: 4,
       minAge: 7,
-      maxAge: 12
+      maxAge: 12,
     },
     teachersName: ['Сербаев Даниил '],
-    teacher: { name: 'Сербаев Даниил ', bio: '', avatar: '' }
+    teacher: { name: 'Сербаев Даниил ', bio: '', avatar: '' },
   },
   {
     id: 25453,
@@ -1852,10 +1852,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: 6,
-      maxAge: 8
+      maxAge: 8,
     },
     teachersName: ['Гришина Виктория '],
-    teacher: { name: 'Гришина Виктория ', bio: '', avatar: '' }
+    teacher: { name: 'Гришина Виктория ', bio: '', avatar: '' },
   },
   {
     id: 20083,
@@ -1879,10 +1879,10 @@ var schedule = [
       minClass: 3,
       maxClass: 7,
       minAge: 8,
-      maxAge: 11
+      maxAge: 11,
     },
     teachersName: [' Фёдоров Александр'],
-    teacher: { name: ' Фёдоров Александр', bio: '', avatar: '' }
+    teacher: { name: ' Фёдоров Александр', bio: '', avatar: '' },
   },
   {
     id: 25477,
@@ -1905,10 +1905,10 @@ var schedule = [
       minClass: 0,
       maxClass: 0,
       minAge: 5,
-      maxAge: 6
+      maxAge: 6,
     },
     teachersName: [' Щёголева Анастасия'],
-    teacher: { name: ' Щёголева Анастасия', bio: '', avatar: '' }
+    teacher: { name: ' Щёголева Анастасия', bio: '', avatar: '' },
   },
   {
     id: 28231,
@@ -1931,10 +1931,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Козенбаева Юлиана'],
-    teacher: { name: 'Козенбаева Юлиана', bio: '', avatar: '' }
+    teacher: { name: 'Козенбаева Юлиана', bio: '', avatar: '' },
   },
   {
     id: 28236,
@@ -1957,10 +1957,10 @@ var schedule = [
       minClass: 3,
       maxClass: 7,
       minAge: 9,
-      maxAge: 14
+      maxAge: 14,
     },
     teachersName: ['Оборин Федор'],
-    teacher: { name: 'Оборин Федор', bio: '', avatar: '' }
+    teacher: { name: 'Оборин Федор', bio: '', avatar: '' },
   },
   {
     id: 25498,
@@ -1983,10 +1983,10 @@ var schedule = [
       minClass: 1,
       maxClass: 1,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Гришина Виктория '],
-    teacher: { name: 'Гришина Виктория ', bio: '', avatar: '' }
+    teacher: { name: 'Гришина Виктория ', bio: '', avatar: '' },
   },
   {
     id: 28465,
@@ -2011,10 +2011,10 @@ var schedule = [
       minClass: 1,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Гришина Виктория '],
-    teacher: { name: 'Гришина Виктория ', bio: '', avatar: '' }
+    teacher: { name: 'Гришина Виктория ', bio: '', avatar: '' },
   },
   {
     id: 25520,
@@ -2037,10 +2037,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Ахмадеева Диана'],
-    teacher: { name: 'Ахмадеева Диана', bio: '', avatar: '' }
+    teacher: { name: 'Ахмадеева Диана', bio: '', avatar: '' },
   },
   {
     id: 28464,
@@ -2065,10 +2065,10 @@ var schedule = [
       minClass: 1,
       maxClass: 10,
       minAge: 7,
-      maxAge: 17
+      maxAge: 17,
     },
     teachersName: ['Изотова Анастасия'],
-    teacher: { name: 'Изотова Анастасия', bio: '', avatar: '' }
+    teacher: { name: 'Изотова Анастасия', bio: '', avatar: '' },
   },
   {
     id: 21065,
@@ -2092,10 +2092,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Ситдикова Камилла'],
-    teacher: { name: 'Ситдикова Камилла', bio: '', avatar: '' }
+    teacher: { name: 'Ситдикова Камилла', bio: '', avatar: '' },
   },
   {
     id: 28463,
@@ -2120,10 +2120,10 @@ var schedule = [
       minClass: 1,
       maxClass: 9,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Гришина Виктория '],
-    teacher: { name: 'Гришина Виктория ', bio: '', avatar: '' }
+    teacher: { name: 'Гришина Виктория ', bio: '', avatar: '' },
   },
   {
     id: 25541,
@@ -2147,10 +2147,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: 6,
-      maxAge: 8
+      maxAge: 8,
     },
     teachersName: ['Козенбаева Юлиана'],
-    teacher: { name: 'Козенбаева Юлиана', bio: '', avatar: '' }
+    teacher: { name: 'Козенбаева Юлиана', bio: '', avatar: '' },
   },
   {
     id: 25559,
@@ -2174,10 +2174,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: 8,
-      maxAge: 11
+      maxAge: 11,
     },
     teachersName: ['Соловьев Дмитрий'],
-    teacher: { name: 'Соловьев Дмитрий', bio: '', avatar: '' }
+    teacher: { name: 'Соловьев Дмитрий', bio: '', avatar: '' },
   },
   {
     id: 26366,
@@ -2200,10 +2200,10 @@ var schedule = [
       minClass: 5,
       maxClass: 10,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Оборин Федор'],
-    teacher: { name: 'Оборин Федор', bio: '', avatar: '' }
+    teacher: { name: 'Оборин Федор', bio: '', avatar: '' },
   },
   {
     id: 28462,
@@ -2228,10 +2228,10 @@ var schedule = [
       minClass: 1,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Погребняк Надежда '],
-    teacher: { name: 'Погребняк Надежда ', bio: '', avatar: '' }
+    teacher: { name: 'Погребняк Надежда ', bio: '', avatar: '' },
   },
   {
     id: 25578,
@@ -2254,10 +2254,10 @@ var schedule = [
       minClass: 5,
       maxClass: 7,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Ахмадеева Диана'],
-    teacher: { name: 'Ахмадеева Диана', bio: '', avatar: '' }
+    teacher: { name: 'Ахмадеева Диана', bio: '', avatar: '' },
   },
   {
     id: 28232,
@@ -2280,10 +2280,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Козенбаева Юлиана'],
-    teacher: { name: 'Козенбаева Юлиана', bio: '', avatar: '' }
+    teacher: { name: 'Козенбаева Юлиана', bio: '', avatar: '' },
   },
   {
     id: 28237,
@@ -2306,10 +2306,10 @@ var schedule = [
       minClass: 3,
       maxClass: 7,
       minAge: 9,
-      maxAge: 14
+      maxAge: 14,
     },
     teachersName: ['Оборин Федор'],
-    teacher: { name: 'Оборин Федор', bio: '', avatar: '' }
+    teacher: { name: 'Оборин Федор', bio: '', avatar: '' },
   },
   {
     id: 25598,
@@ -2333,10 +2333,10 @@ var schedule = [
       minClass: 0,
       maxClass: 0,
       minAge: 5,
-      maxAge: 6
+      maxAge: 6,
     },
     teachersName: [' Салахетдинов Руслан'],
-    teacher: { name: ' Салахетдинов Руслан', bio: '', avatar: '' }
+    teacher: { name: ' Салахетдинов Руслан', bio: '', avatar: '' },
   },
   {
     id: 25642,
@@ -2359,10 +2359,10 @@ var schedule = [
       minClass: 0,
       maxClass: 2,
       minAge: 6,
-      maxAge: 8
+      maxAge: 8,
     },
     teachersName: ['Козенбаева Юлиана'],
-    teacher: { name: 'Козенбаева Юлиана', bio: '', avatar: '' }
+    teacher: { name: 'Козенбаева Юлиана', bio: '', avatar: '' },
   },
   {
     id: 25664,
@@ -2385,10 +2385,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Ахмадеева Диана'],
-    teacher: { name: 'Ахмадеева Диана', bio: '', avatar: '' }
+    teacher: { name: 'Ахмадеева Диана', bio: '', avatar: '' },
   },
   {
     id: 21209,
@@ -2412,10 +2412,10 @@ var schedule = [
       minClass: 1,
       maxClass: 2,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Гришина Виктория '],
-    teacher: { name: 'Гришина Виктория ', bio: '', avatar: '' }
+    teacher: { name: 'Гришина Виктория ', bio: '', avatar: '' },
   },
   {
     id: 25686,
@@ -2438,10 +2438,10 @@ var schedule = [
       minClass: 0,
       maxClass: 1,
       minAge: 5,
-      maxAge: 7
+      maxAge: 7,
     },
     teachersName: ['Ахмадеева Диана'],
-    teacher: { name: 'Ахмадеева Диана', bio: '', avatar: '' }
+    teacher: { name: 'Ахмадеева Диана', bio: '', avatar: '' },
   },
   {
     id: 26408,
@@ -2465,10 +2465,10 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Ситдикова Камилла'],
-    teacher: { name: 'Ситдикова Камилла', bio: '', avatar: '' }
+    teacher: { name: 'Ситдикова Камилла', bio: '', avatar: '' },
   },
   {
     id: 27719,
@@ -2491,14 +2491,14 @@ var schedule = [
       minClass: 7,
       maxClass: 11,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: [' Ростислав Бородин'],
     teacher: {
       name: ' Ростислав Бородин',
       bio: '',
-      avatar: 'http://class.roctbb.net'
-    }
+      avatar: 'http://class.roctbb.net',
+    },
   },
   {
     id: 25708,
@@ -2522,10 +2522,10 @@ var schedule = [
       minClass: 5,
       maxClass: 10,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Стегура Никита'],
-    teacher: { name: 'Стегура Никита', bio: '', avatar: '' }
+    teacher: { name: 'Стегура Никита', bio: '', avatar: '' },
   },
   {
     id: 25729,
@@ -2548,11 +2548,11 @@ var schedule = [
       minClass: 3,
       maxClass: 4,
       minAge: null,
-      maxAge: null
+      maxAge: null,
     },
     teachersName: ['Ахмадеева Диана'],
-    teacher: { name: 'Ахмадеева Диана', bio: '', avatar: '' }
-  }
-]
+    teacher: { name: 'Ахмадеева Диана', bio: '', avatar: '' },
+  },
+];
 
-export default schedule
+export default schedule;

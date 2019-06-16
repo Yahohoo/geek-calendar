@@ -1,36 +1,45 @@
 <template>
-  <div 
-    v-show="isOpened" 
-    class="enroll-modal-box">
-    <div 
-      :class="data.themeClass" 
-      class="enroll-modal">
-      <i 
+  <div
+    v-show="isOpened"
+    class="enroll-modal-box"
+  >
+    <div
+      :class="data.themeClass"
+      class="enroll-modal"
+    >
+      <i
         style="font-size: 22px"
-        class="fa fa-times modal-close" 
-        @click="closeModal"/>
+        class="fa fa-times modal-close"
+        @click="closeModal"
+      />
       <div class="modal-header modal-block">
-        <img 
-          :src="data.cover" 
-          class="modal-header-cover" 
-          alt>
+        <img
+          :src="data.cover"
+          class="modal-header-cover"
+          alt
+        >
         <div class="modal-header-info">
-          <div class="modal-header-title">{{ data.title }}</div>
+          <div class="modal-header-title">
+            {{ data.title }}
+          </div>
           <div class="modal-header-extra">
             <span class="header-extra-item age">
-              <img 
-                :src="require('@/assets/age-icon.svg')" 
-                class="extra-item-icon" 
-                alt>
+              <img
+                :src="require('@/assets/age-icon.svg')"
+                class="extra-item-icon"
+                alt
+              >
               {{ data.age }}
             </span>
-            <span 
-              v-if="data.duration" 
-              class="header-extra-item duration">
-              <img 
-                :src="require('@/assets/clock.svg')" 
-                class="extra-item-icon" 
-                alt>
+            <span
+              v-if="data.duration"
+              class="header-extra-item duration"
+            >
+              <img
+                :src="require('@/assets/clock.svg')"
+                class="extra-item-icon"
+                alt
+              >
               {{ data.duration }} мин
             </span>
           </div>
@@ -38,72 +47,92 @@
       </div>
 
       <div
-        :class="{'opened-enroll': isFormOpened}" 
-        class="enroll-switcher">
-        <div 
-          class="pre-enroll">
+        :class="{'opened-enroll': isFormOpened}"
+        class="enroll-switcher"
+      >
+        <div
+          class="pre-enroll"
+        >
           <div class="event-info">
-            <div class="event-info-item date">{{ data.date }}</div>
-            <div class="event-info-item address">{{ data.address }}</div>
-            <div class="event-info-item time">{{ data.timing }}</div>
+            <div class="event-info-item date">
+              {{ data.date }}
+            </div>
+            <div class="event-info-item address">
+              {{ data.address }}
+            </div>
+            <div class="event-info-item time">
+              {{ data.timing }}
+            </div>
           </div>
-          <button 
-            class="modal-button show-form" 
-            @click="showForm">Запись</button>
+          <button
+            class="modal-button show-form"
+            @click="showForm"
+          >
+            Запись
+          </button>
         </div>
 
-        <div 
-          class="modal-enroll modal-block">
+        <div
+          class="modal-enroll modal-block"
+        >
           <div class="modal-enroll-form">
-            
-            <labeled-input 
+            <labeled-input
               :is-active="isNameActive"
               class="enroll-field-wrap"
-              label="Имя">
+              label="Имя"
+            >
               <input
                 v-model="enrollForm.name"
                 class="enroll-input enroll-input-field"
                 type="text"
-                required 
-                @focus="enrollFormFocus.name = true" 
-                @blur="enrollFormFocus.name = false">
+                required
+                @focus="enrollFormFocus.name = true"
+                @blur="enrollFormFocus.name = false"
+              >
             </labeled-input>
-          
-            <labeled-input 
+
+            <labeled-input
               :is-active="isPhoneActive"
               class="enroll-field-wrap"
-              label="Телефон">
+              label="Телефон"
+            >
               <input
-                v-validate="{ required: true, regex: /^\+7[0-9]{10}}$/ }"
                 ref="phone"
                 v-model="enrollForm.phone"
-                data-vv-as="Номер телефона" 
+                v-validate="{ required: true, regex: /^\+7[0-9]{10}}$/ }"
+                data-vv-as="Номер телефона"
                 class="enroll-input enroll-input-field"
                 type="tel"
                 pattern="\+7[0-9]{10}"
                 title="+79996662233"
                 required
-                @focus="enrollFormFocus.phone = true" 
-                @blur="enrollFormFocus.phone = false">
+                @focus="enrollFormFocus.phone = true"
+                @blur="enrollFormFocus.phone = false"
+              >
             </labeled-input>
-            
-            <labeled-input 
+
+            <labeled-input
               :is-active="isEmailActive"
               class="enroll-field-wrap"
-              label="Email">
-              <input 
-                v-validate
+              label="Email"
+            >
+              <input
                 v-model="enrollForm.email"
+                v-validate
                 data-vv-as="Email"
-                class="enroll-input enroll-input-field" 
+                class="enroll-input enroll-input-field"
                 type="email"
-                @focus="enrollFormFocus.email = true" 
-                @blur="enrollFormFocus.email = false">
+                @focus="enrollFormFocus.email = true"
+                @blur="enrollFormFocus.email = false"
+              >
             </labeled-input>
 
             <button
               class="modal-button enroll-input submit-enroll"
-              @click="sendEnrollRequest">Записаться</button>
+              @click="sendEnrollRequest"
+            >
+              Записаться
+            </button>
           </div>
           <div class="enroll-success enroll-status">
             Спасибо за заявку!
@@ -117,32 +146,39 @@
         </div>
       </div>
 
-      <div 
-        v-if="tabs.length" 
-        class="modal-about modal-block">
+      <div
+        v-if="tabs.length"
+        class="modal-about modal-block"
+      >
         <div class="modal-about-tabs">
-          <div 
-            v-for="tab in tabs" 
+          <div
+            v-for="tab in tabs"
             :key="tab.name"
             :style="{cursor: tabs.length > 1 ? 'pointer' : 'default'}"
             :class="{current: isCurrentTab(tab.tab) && tabs.length > 1}"
             class="modal-about-tab"
-            @click="currentTab = tab.tab">{{ tab.name }}</div>
+            @click="currentTab = tab.tab"
+          >
+            {{ tab.name }}
+          </div>
         </div>
-        <div 
-          v-for="tab in tabs" 
+        <div
+          v-for="tab in tabs"
           v-show="isCurrentTab(tab.tab)"
           :key="tab.name"
-          class="modal-about-tab-body">
+          class="modal-about-tab-body"
+        >
           {{ tab.content }}
         </div>
       </div>
-      <div 
-        v-if="data.teacher" 
-        class="modal-teacher modal-block">
-        <img 
-          :src="data.teacher.avatar" 
-          class="modal-teacher-photo">
+      <div
+        v-if="data.teacher"
+        class="modal-teacher modal-block"
+      >
+        <img
+          :src="data.teacher.avatar"
+          class="modal-teacher-photo"
+        >
         <div class="modal-teacher-info">
           <span class="modal-teacher-heading">Преподаватель</span>
           <br>
@@ -154,116 +190,116 @@
 </template>
 
 <script>
-  import { mapMutations, mapState } from 'vuex'
-  import labeledInput from './labeled-input.vue'
+import { mapMutations, mapState } from 'vuex';
+import labeledInput from './labeled-input.vue';
 
-  export default {
-    components: {
-      labeledInput
-    },
+export default {
+  components: {
+    labeledInput,
+  },
 
-    data() {
-      return {
-        isFormOpened: false,
-        currentTab: null,
-        enrollForm: {
-          name: '',
-          email: '',
-          phone: ''
+  data() {
+    return {
+      isFormOpened: false,
+      currentTab: null,
+      enrollForm: {
+        name: '',
+        email: '',
+        phone: '',
+      },
+      enrollFormFocus: {
+        name: false,
+        email: false,
+        phone: false,
+      },
+    };
+  },
+
+  computed: {
+    ...mapState({
+      isOpened: 'isModalOpened',
+      data: 'modalData',
+    }),
+    tabs() {
+      return [
+        {
+          tab: 'description',
+          name: 'О занятии',
+          content: this.data.description,
         },
-        enrollFormFocus: {
-          name: false,
-          email: false,
-          phone: false
-        }
-      }
+        {
+          tab: 'teacher',
+          name: 'О преподавателе',
+          content: this.data.teacher && this.data.teacher.bio,
+        },
+        {
+          tab: 'photo',
+          name: 'Фото',
+          content: this.data.photo,
+        },
+        {
+          tab: 'video',
+          name: 'Видео',
+          content: this.data.video,
+        },
+      ].filter(tab => tab.content);
     },
-
-    computed: {
-      ...mapState({
-        isOpened: 'isModalOpened',
-        data: 'modalData'
-      }),
-      tabs() {
-        return [
-          {
-            tab: 'description',
-            name: 'О занятии',
-            content: this.data.description
-          },
-          {
-            tab: 'teacher',
-            name: 'О преподавателе',
-            content: this.data.teacher && this.data.teacher.bio         
-          },
-          {
-            tab: 'photo',
-            name: 'Фото',
-            content: this.data.photo          
-          },
-          {
-            tab: 'video',
-            name: 'Видео',
-            content: this.data.video
-          },
-        ].filter(tab => tab.content)
-      },
-      initialTab() {
-        return this.tabs.length ? this.tabs[0].tab : null 
-      },
-      formMetaData() {
-        return {
-          lessonId: this.data.id,
-          regSourceId: 2 // поменять
-        }
-      },
-      isNameActive() {
-        return Boolean(this.enrollForm.name || this.enrollFormFocus.name)
-      },
-      isEmailActive() {
-        return Boolean(this.enrollForm.email || this.enrollFormFocus.email)
-      },
-      isPhoneActive() {
-        return Boolean(this.enrollForm.phone || this.enrollFormFocus.phone)
-      }
+    initialTab() {
+      return this.tabs.length ? this.tabs[0].tab : null;
     },
+    formMetaData() {
+      return {
+        lessonId: this.data.id,
+        regSourceId: 2, // поменять
+      };
+    },
+    isNameActive() {
+      return Boolean(this.enrollForm.name || this.enrollFormFocus.name);
+    },
+    isEmailActive() {
+      return Boolean(this.enrollForm.email || this.enrollFormFocus.email);
+    },
+    isPhoneActive() {
+      return Boolean(this.enrollForm.phone || this.enrollFormFocus.phone);
+    },
+  },
 
-    methods: {
-      ...mapMutations(['setModalStatus']),
-      closeModal() {
-        this.setModalStatus({ isOpened: false })
-        this.isFormOpened = false
-      },
-      showForm() {
-        this.isFormOpened = true
-      },
-      isCurrentTab(tab) {
-        return (this.currentTab || this.initialTab) === tab
-      },
-      sendEnrollRequest() {
-        const form = new FormData()
-        
-        const data = Object.entries(Object.assign(
-          {}, this.formMetaData, this.enrollForm
-        ))
+  methods: {
+    ...mapMutations(['setModalStatus']),
+    closeModal() {
+      this.setModalStatus({ isOpened: false });
+      this.isFormOpened = false;
+    },
+    showForm() {
+      this.isFormOpened = true;
+    },
+    isCurrentTab(tab) {
+      return (this.currentTab || this.initialTab) === tab;
+    },
+    sendEnrollRequest() {
+      const form = new FormData();
 
-        for (const dataPair of data) {
-          form.append(...dataPair)
-        }
+      const data = Object.entries(Object.assign(
+        {}, this.formMetaData, this.enrollForm,
+      ));
 
-        fetch(
-          'https://db2.gekkon-club.ru/api/add-lead',
-          {method: 'POST', body: form}
-        ).then(resp => {
-          if (resp.ok) {
-            
-          } else {
-
-          }
-        })
+      for (const dataPair of data) {
+        form.append(...dataPair);
       }
-    }
-  }
+
+      fetch(
+        'https://db2.gekkon-club.ru/api/add-lead',
+        { method: 'POST', body: form },
+      ).then((resp) => {
+        if (resp.ok) {
+
+        } else {
+
+        }
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -397,13 +433,13 @@
     padding: 10px 20px;
     display: flex;
     justify-content: space-around;
-  } 
+  }
 
   .event-info {
     @media screen and (max-width: 480px) {
       text-align: center;
       margin-bottom: 10px;
-    } 
+    }
   }
 
   .show-form {

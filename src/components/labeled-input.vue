@@ -1,14 +1,15 @@
 <template>
   <div
     :class="{active: isActive}"
-    class="labeled-input">
-    <label 
-      class="label">
+    class="labeled-input"
+  >
+    <label
+      class="label"
+    >
       {{ label }}
     </label>
-    <slot/>
+    <slot />
   </div>
-
 </template>
 
 <script>
@@ -16,14 +17,14 @@ export default {
   props: {
     isActive: {
       type: Boolean,
-      default: false
+      default: false,
     },
     label: {
       type: String,
-      default: ''
-    }
-  }
-}
+      default: '',
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -46,7 +47,7 @@ export default {
   .active {
     .label {
       padding: 0px 2px;
-      top: -9px;  
+      top: -9px;
       font-size: 0.9rem;
       color: $active;
     }

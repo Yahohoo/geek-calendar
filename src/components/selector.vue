@@ -5,46 +5,56 @@
       filled: isFilled,
       active: isActive,
       opened
-    }" 
-    class="selector">
-    <labeled-input 
-      :label="label" 
-      :is-active="isActive">
-      <div  
-        class="main" 
-        @click="opened = !opened">
-        <div 
+    }"
+    class="selector"
+  >
+    <labeled-input
+      :label="label"
+      :is-active="isActive"
+    >
+      <div
+        class="main"
+        @click="opened = !opened"
+      >
+        <div
           v-if="selected.length"
-          class="current-selection">
+          class="current-selection"
+        >
           {{ selected.map(selection => selection.title).join(', ') }}
         </div>
         <div class="control">
-          <i 
-            v-if="selected.length" 
-            class="far fa-times-circle" 
-            @click.stop="clearSelections"/>
-          <i 
-            class="fa fa-chevron-down"/>
+          <i
+            v-if="selected.length"
+            class="far fa-times-circle"
+            @click.stop="clearSelections"
+          />
+          <i
+            class="fa fa-chevron-down"
+          />
         </div>
       </div>
     </labeled-input>
     <div class="dropdown-wrapper">
-      <div 
-        v-if="opened" 
-        class="dropdown">
-        <label 
-          v-for="selection in selections" 
-          :key="selection.title" 
-          class="item">
-          <input 
-            v-model="selected" 
-            :value="selection" 
-            type="checkbox">
+      <div
+        v-if="opened"
+        class="dropdown"
+      >
+        <label
+          v-for="selection in selections"
+          :key="selection.title"
+          class="item"
+        >
+          <input
+            v-model="selected"
+            :value="selection"
+            type="checkbox"
+          >
           <div class="selection">{{ selection.title }}</div>
           <div class="checkbox">
-            <i 
-              v-if="selected.includes(selection)" 
-              class="fa fa-check"/>
+            <i
+              v-if="selected.includes(selection)"
+              class="fa fa-check"
+            />
           </div>
         </label>
       </div>
@@ -53,68 +63,68 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-import labeledInput from './labeled-input.vue';
+import { mapMutations } from 'vuex';
 import { mixin as clickaway } from 'vue-clickaway';
+import labeledInput from './labeled-input.vue';
 
 export default {
   components: {
-    labeledInput
+    labeledInput,
   },
 
-  mixins: [ clickaway ],
+  mixins: [clickaway],
 
   props: {
     selections: {
       type: Array,
-      default: () => []
-    }, 
+      default: () => [],
+    },
     category: {
       type: String,
-      default: ''
+      default: '',
     },
     label: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
 
   data() {
     return {
-      opened: false
-    }
+      opened: false,
+    };
   },
 
   computed: {
     selected: {
       get() {
-        return this.$store.state.filters[this.category]
+        return this.$store.state.filters[this.category];
       },
       set(selection) {
-        this.updateFilter({ category: this.category, selection })
-      }
+        this.updateFilter({ category: this.category, selection });
+      },
     },
     areAllSelected() {
-      return this.selected.length == this.selections.length
+      return this.selected.length == this.selections.length;
     },
     isActive() {
-      return this.selected.length || this.opened
+      return this.selected.length || this.opened;
     },
     isFilled() {
-      return this.selected.length
-    }
+      return this.selected.length;
+    },
   },
 
   methods: {
     ...mapMutations(['updateFilter']),
     blur() {
-      this.opened = false
+      this.opened = false;
     },
     clearSelections() {
-      this.selected = []
-    }
-  }
-}
+      this.selected = [];
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -140,7 +150,7 @@ $active: #7281f1;
 }
 
 .selector-name {
-  top: 8px; 
+  top: 8px;
   position: absolute;
   background-color: #fff;
   transition: all 0.3s ease;
@@ -227,7 +237,7 @@ $active: #7281f1;
 .active {
   .selector-name {
     padding: 0px 2px;
-    top: -11px;  
+    top: -11px;
     font-size: 0.9rem;
     color: $active;
   }

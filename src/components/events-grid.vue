@@ -1,188 +1,97 @@
 <template>
   <div>
     <div class="events-grid">
-      <div 
-        v-for="(day, index) in currentWeekDays" 
-        :key="index" 
+      <div
+        v-for="(day, index) in currentWeekDays"
+        :key="index"
         :class="{solo: $store.state.soloColumnIndex === index}"
-        class="col">
-        <div 
-          :class="{'current-day': isToday(day)}" 
-          class="col-head">
-          <div class="day-date">{{ day | formatDate('D') }}</div>
-          <div class="day-name">{{ day | formatDate('dd') }}</div>
+        class="col"
+      >
+        <div
+          :class="{'current-day': isToday(day)}"
+          class="col-head"
+        >
+          <div class="day-date">
+            {{ day | formatDate('D') }}
+          </div>
+          <div class="day-name">
+            {{ day | formatDate('dd') }}
+          </div>
         </div>
         <template v-if="$store.state.isDataLoaded">
           <transition-group
             appear
             enter-active-class="animated fadeInUp"
-            leave-active-class="animated bounceOutRig">
+            leave-active-class="animated bounceOutRig"
+          >
             <div
               v-if="!weekSchedule[index].length"
               key="free-day"
-              class="free-day-wrapper">
-              <div 
-                class="free-day">
+              class="free-day-wrapper"
+            >
+              <div
+                class="free-day"
+              >
                 Нет занятий
               </div>
             </div>
-            <event-card 
-              v-for="event in weekSchedule[index]" 
-              :event="event" 
-              :key="event.id"/>
+            <event-card
+              v-for="event in weekSchedule[index]"
+              :key="event.id"
+              :event="event"
+            />
           </transition-group>
         </template>
       </div>
     </div>
-    <div 
-      v-if="!$store.state.isDataLoaded" 
-      class="preloader">
-      <div class="lds-roller"><div/><div/><div/><div/><div/><div/><div/><div/></div>
+    <div
+      v-if="!$store.state.isDataLoaded"
+      class="preloader"
+    >
+      <div class="lds-roller">
+        <div /><div /><div /><div /><div /><div /><div /><div />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
-import { isSameDay, getISODay, isToday } from 'date-fns'
-import eventCard from './event-card.vue'
+import { mapGetters, mapMutations } from 'vuex';
+import { isSameDay, getISODay, isToday } from 'date-fns';
+import eventCard from './event-card.vue';
 
 export default {
   name: 'EventsGrid',
   components: {
-    eventCard
+    eventCard,
   },
-  data: function() {
+  data() {
     return {
-      today: new Date()
-    }
+      today: new Date(),
+    };
   },
   computed: {
     weekSchedule() {
-      let events = Array(7)
+      const events = Array(7)
         .fill(null)
-        .map(() => [])
-      for (let event of this.filteredLessons) {
+        .map(() => []);
+      for (const event of this.filteredLessons) {
         // ISO день недели от 1 (пн) до 7 (вс)
-        const day = getISODay(new Date(event.startDate)) - 1
-        events[day].push(event)
+        const day = getISODay(new Date(event.startDate)) - 1;
+        events[day].push(event);
       }
 
-      return events
+      return events;
     },
-    ...mapGetters(['currentWeekDays', 'filteredLessons'])
+    ...mapGetters(['currentWeekDays', 'filteredLessons']),
   },
   methods: {
-    isToday
-  }
-}
+    isToday,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-.lds-roller {
-  display: inline-block;
-  position: relative;
-  width: 64px;
-  height: 64px;
-}
-
-.lds-roller div {
-  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  transform-origin: 32px 32px;
-}
-
-.lds-roller div:after {
-  content: " ";
-  display: block;
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: lightblue;
-  margin: -3px 0 0 -3px;
-}
-
-.lds-roller div:nth-child(1) {
-  animation-delay: -0.036s;
-}
-
-.lds-roller div:nth-child(1):after {
-  top: 50px;
-  left: 50px;
-}
-
-.lds-roller div:nth-child(2) {
-  animation-delay: -0.072s;
-}
-
-.lds-roller div:nth-child(2):after {
-  top: 54px;
-  left: 45px;
-}
-
-.lds-roller div:nth-child(3) {
-  animation-delay: -0.108s;
-}
-
-.lds-roller div:nth-child(3):after {
-  top: 57px;
-  left: 39px;
-}
-
-.lds-roller div:nth-child(4) {
-  animation-delay: -0.144s;
-}
-
-.lds-roller div:nth-child(4):after {
-  top: 58px;
-  left: 32px;
-}
-
-.lds-roller div:nth-child(5) {
-  animation-delay: -0.18s;
-}
-
-.lds-roller div:nth-child(5):after {
-  top: 57px;
-  left: 25px;
-}
-
-.lds-roller div:nth-child(6) {
-  animation-delay: -0.216s;
-}
-
-.lds-roller div:nth-child(6):after {
-  top: 54px;
-  left: 19px;
-}
-
-.lds-roller div:nth-child(7) {
-  animation-delay: -0.252s;
-}
-
-.lds-roller div:nth-child(7):after {
-  top: 50px;
-  left: 14px;
-}
-
-.lds-roller div:nth-child(8) {
-  animation-delay: -0.288s;
-}
-
-.lds-roller div:nth-child(8):after {
-  top: 45px;
-  left: 10px;
-}
-
-@keyframes lds-roller {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .preloader {
   width: 100%;
   height: 200px;
@@ -245,7 +154,7 @@ export default {
   .col {
     width: 100%;
   }
-  
+
   .col-head {
     display: none;
   }

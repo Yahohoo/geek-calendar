@@ -1,26 +1,42 @@
 <template>
   <div class="panel">
     <div class="panel-element switchers">
-      <button 
-        class="button today-switcher" 
-        @click="switchToCurrentWeek">Сегодня</button>
-      <button 
-        class="button week-switcher" 
-        @click="switchToPreviousWeek">&lt;</button>
-      <div class="current-month">{{ currentMonth }}</div>
-      <button 
-        class="button week-switcher" 
-        @click="switchToNextWeek">&gt;</button>
+      <button
+        class="button today-switcher"
+        @click="switchToCurrentWeek"
+      >
+        Сегодня
+      </button>
+      <button
+        class="button week-switcher"
+        @click="switchToPreviousWeek"
+      >
+        &lt;
+      </button>
+      <div class="current-month">
+        {{ currentMonth }}
+      </div>
+      <button
+        class="button week-switcher"
+        @click="switchToNextWeek"
+      >
+        &gt;
+      </button>
     </div>
     <div class="panel-element week-days-switchers">
       <button
-        v-for="(day, index) in currentWeekDays" 
+        v-for="(day, index) in currentWeekDays"
         :key="day.getDay()"
         :class="{ current: $store.state.soloColumnIndex === index }"
-        class="button week-day-switcher" 
-        @click="setSoloColumnIndex({ index })">
-        <div class="day-name">{{ day | formatDate('dd') }}</div>
-        <div class="day-date">{{ day | formatDate('D') }}</div>
+        class="button week-day-switcher"
+        @click="setSoloColumnIndex({ index })"
+      >
+        <div class="day-name">
+          {{ day | formatDate('dd') }}
+        </div>
+        <div class="day-date">
+          {{ day | formatDate('D') }}
+        </div>
       </button>
     </div>
     <div class="panel-element color-legend">
@@ -33,26 +49,26 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 
 export default {
   computed: {
     ...mapGetters([
       'currentMonth',
-      'currentWeekDays'
-    ])
+      'currentWeekDays',
+    ]),
   },
   methods: {
     ...mapMutations([
-      'setSoloColumnIndex'
+      'setSoloColumnIndex',
     ]),
     ...mapActions([
       'switchToNextWeek',
       'switchToPreviousWeek',
-      'switchToCurrentWeek'
-    ])
-  }
-}
+      'switchToCurrentWeek',
+    ]),
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -115,4 +131,3 @@ export default {
   border-radius: 1px;
 }
 </style>
-
