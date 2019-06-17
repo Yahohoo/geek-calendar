@@ -8,13 +8,11 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import { mapActions } from 'vuex';
-import modal from './components/modal.vue';
-import selectors from './components/selectors';
-import controlPanel from './components/control-panel.vue';
-import eventsGrid from './components/events-grid.vue';
-import schedule from './data.js';
+import { mapActions } from 'vuex'
+import modal from './components/modal.vue'
+import selectors from './components/selectors'
+import controlPanel from './components/control-panel.vue'
+import eventsGrid from './components/events-grid.vue'
 
 export default {
   name: 'App',
@@ -27,13 +25,13 @@ export default {
   },
 
   created() {
-    this.loadDataForWeek();
+    this.loadDataForWeek()
   },
 
   methods: {
     ...mapActions(['loadDataForWeek']),
   },
-};
+}
 </script>
 
 <style lang="scss">

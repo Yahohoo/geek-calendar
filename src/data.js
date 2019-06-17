@@ -2553,6 +2553,6 @@ const schedule = [
     teachersName: ['Ахмадеева Диана'],
     teacher: { name: 'Ахмадеева Диана', bio: '', avatar: '' },
   },
-];
+]
 
-export default schedule;
+export default schedule

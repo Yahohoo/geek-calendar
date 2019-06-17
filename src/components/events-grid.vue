@@ -5,12 +5,10 @@
         v-for="(day, index) in currentWeekDays"
         :key="index"
         :class="{solo: $store.state.soloColumnIndex === index}"
-        class="col"
-      >
+        class="col">
         <div
           :class="{'current-day': isToday(day)}"
-          class="col-head"
-        >
+          class="col-head">
           <div class="day-date">
             {{ day | formatDate('D') }}
           </div>
@@ -22,32 +20,27 @@
           <transition-group
             appear
             enter-active-class="animated fadeInUp"
-            leave-active-class="animated bounceOutRig"
-          >
+            leave-active-class="animated bounceOutRig">
             <div
               v-if="!weekSchedule[index].length"
               key="free-day"
-              class="free-day-wrapper"
-            >
+              class="free-day-wrapper">
               <div
-                class="free-day"
-              >
+                class="free-day">
                 Нет занятий
               </div>
             </div>
             <event-card
               v-for="event in weekSchedule[index]"
               :key="event.id"
-              :event="event"
-            />
+              :event="event" />
           </transition-group>
         </template>
       </div>
     </div>
     <div
       v-if="!$store.state.isDataLoaded"
-      class="preloader"
-    >
+      class="preloader">
       <div class="lds-roller">
         <div /><div /><div /><div /><div /><div /><div /><div />
       </div>
@@ -56,9 +49,9 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
-import { isSameDay, getISODay, isToday } from 'date-fns';
-import eventCard from './event-card.vue';
+import { mapGetters } from 'vuex'
+import { getISODay, isToday } from 'date-fns'
+import eventCard from './event-card.vue'
 
 export default {
   name: 'EventsGrid',
@@ -68,27 +61,27 @@ export default {
   data() {
     return {
       today: new Date(),
-    };
+    }
   },
   computed: {
     weekSchedule() {
       const events = Array(7)
         .fill(null)
-        .map(() => []);
-      for (const event of this.filteredLessons) {
+        .map(() => [])
+      this.filteredLessons.forEach((event) => {
         // ISO день недели от 1 (пн) до 7 (вс)
-        const day = getISODay(new Date(event.startDate)) - 1;
-        events[day].push(event);
-      }
+        const day = getISODay(new Date(event.startDate)) - 1
+        events[day].push(event)
+      })
 
-      return events;
+      return events
     },
     ...mapGetters(['currentWeekDays', 'filteredLessons']),
   },
   methods: {
     isToday,
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -146,7 +139,7 @@ export default {
   margin-bottom: 50px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .col:not(.solo) {
     display: none;
   }

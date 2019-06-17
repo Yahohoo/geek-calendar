@@ -6,55 +6,47 @@
       active: isActive,
       opened
     }"
-    class="selector"
-  >
+    class="selector">
     <labeled-input
       :label="label"
-      :is-active="isActive"
-    >
+      :is-active="isActive">
       <div
         class="main"
-        @click="opened = !opened"
-      >
+        @click="opened = !opened">
         <div
           v-if="selected.length"
-          class="current-selection"
-        >
+          class="current-selection">
           {{ selected.map(selection => selection.title).join(', ') }}
         </div>
         <div class="control">
-          <i
+          <font-awesome-icon
             v-if="selected.length"
-            class="far fa-times-circle"
-            @click.stop="clearSelections"
-          />
-          <i
-            class="fa fa-chevron-down"
-          />
+            icon="times-circle"
+            @click.stop="clearSelections" />
+          <font-awesome-icon
+            icon="chevron-down"
+            class="icon" />
         </div>
       </div>
     </labeled-input>
     <div class="dropdown-wrapper">
       <div
         v-if="opened"
-        class="dropdown"
-      >
+        class="dropdown">
         <label
           v-for="selection in selections"
           :key="selection.title"
-          class="item"
-        >
+          class="item">
           <input
             v-model="selected"
             :value="selection"
-            type="checkbox"
-          >
+            type="checkbox">
           <div class="selection">{{ selection.title }}</div>
           <div class="checkbox">
-            <i
+            <font-awesome-icon
               v-if="selected.includes(selection)"
-              class="fa fa-check"
-            />
+              icon="check"
+              class="icon" />
           </div>
         </label>
       </div>
@@ -63,9 +55,9 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
-import { mixin as clickaway } from 'vue-clickaway';
-import labeledInput from './labeled-input.vue';
+import { mapMutations } from 'vuex'
+import { mixin as clickaway } from 'vue-clickaway'
+import labeledInput from './labeled-input.vue'
 
 export default {
   components: {
@@ -79,10 +71,12 @@ export default {
       type: Array,
       default: () => [],
     },
+
     category: {
       type: String,
       default: '',
     },
+
     label: {
       type: String,
       default: '',
@@ -92,39 +86,44 @@ export default {
   data() {
     return {
       opened: false,
-    };
+    }
   },
 
   computed: {
     selected: {
       get() {
-        return this.$store.state.filters[this.category];
+        return this.$store.state.filters[this.category]
       },
       set(selection) {
-        this.updateFilter({ category: this.category, selection });
+        this.updateFilter({ category: this.category, selection })
       },
     },
+
     areAllSelected() {
-      return this.selected.length == this.selections.length;
+      return this.selected.length === this.selections.length
     },
+
     isActive() {
-      return this.selected.length || this.opened;
+      return this.selected.length || this.opened
     },
+
     isFilled() {
-      return this.selected.length;
+      return this.selected.length
     },
   },
 
   methods: {
     ...mapMutations(['updateFilter']),
+
     blur() {
-      this.opened = false;
+      this.opened = false
     },
+
     clearSelections() {
-      this.selected = [];
+      this.selected = []
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -171,7 +170,7 @@ $active: #7281f1;
   cursor: pointer;
 }
 
-.fa {
+.icon {
   transition: all 0.5s;
 }
 

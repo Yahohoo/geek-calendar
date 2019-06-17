@@ -1,11 +1,9 @@
 <template>
   <div
     :class="{active: isActive}"
-    class="labeled-input"
-  >
+    class="labeled-input">
     <label
-      class="label"
-    >
+      class="label">
       {{ label }}
     </label>
     <slot />
@@ -19,12 +17,13 @@ export default {
       type: Boolean,
       default: false,
     },
+
     label: {
       type: String,
       default: '',
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

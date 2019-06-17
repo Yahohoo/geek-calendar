@@ -1,8 +1,8 @@
 import {
   state, availableValues, getters, actions, mutations,
-} from '@/store.js';
-import { expect } from 'chai';
-import { cloneDeep } from 'lodash-es';
+} from '@/store.js'
+import { expect } from 'chai'
+import { cloneDeep } from 'lodash-es'
 
 import {
   startOfWeek,
@@ -10,7 +10,7 @@ import {
   eachDay,
   addWeeks,
   subWeeks,
-} from 'date-fns';
+} from 'date-fns'
 
 const lessons = [
   {
@@ -152,10 +152,10 @@ const lessons = [
       avatar: '',
     },
   },
-];
+]
 
-state.lessons = lessons;
-state.currentWeekStartDay = startOfWeek(new Date('2019-04-05T04:25:59.399Z'), { weekStartsOn: 1 });
+state.lessons = lessons
+state.currentWeekStartDay = startOfWeek(new Date('2019-04-05T04:25:59.399Z'), { weekStartsOn: 1 })
 
 const teachers = [
   { value: 'Кушнерев Олег', title: 'Кушнерев Олег' },
@@ -164,7 +164,7 @@ const teachers = [
     title: 'Воробьев Сергей Иванович',
   },
   { value: 'Ситдикова Камилла', title: 'Ситдикова Камилла' },
-];
+]
 
 const directions = [
   {
@@ -176,22 +176,22 @@ const directions = [
     value: 'Чанк Инженерное проектирование',
     title: 'Чанк Инженерное проектирование',
   },
-];
+]
 
 const types = [
   { value: 'Кружок', title: 'Кружок' },
-];
+]
 
 const addresses = [
   { value: 4, title: 'ул. Народного ополчения, 9к5' },
   { value: 1, title: 'ул. Академика Анохина, 4к1' },
   { value: 3, title: 'ул. Олимпийская деревня, 23к1' },
-];
+]
 
 describe('Мутации хранилища', () => {
-  let mutatableState;
-  beforeEach(() => (mutatableState = cloneDeep(state)));
-});
+  let mutatableState
+  beforeEach(() => (mutatableState = cloneDeep(state)))
+})
 
 describe('Геттеры хранилища', () => {
   const selections = {
@@ -200,12 +200,12 @@ describe('Геттеры хранилища', () => {
     type: types,
     address: addresses,
     age: state.ageSelections,
-  };
+  }
   it('возвращает все доступные варианты выбора для всех категорий', () => {
-    const availableSelections = getters.availableSelections(state);
+    const availableSelections = getters.availableSelections(state)
 
-    expect(availableSelections).to.be.eql(selections);
-  });
+    expect(availableSelections).to.be.eql(selections)
+  })
 
   it('Возвращает конфигурацию для всех селекторов', () => {
     const selectors = [
@@ -234,23 +234,23 @@ describe('Геттеры хранилища', () => {
         selections: selections.age,
         category: 'age',
       },
-    ];
+    ]
 
     const mockGetters = {
       availableSelections: selections,
-    };
+    }
 
-    expect(getters.selectors(state, mockGetters)).to.eql(selectors);
-  });
+    expect(getters.selectors(state, mockGetters)).to.eql(selectors)
+  })
 
   it('Возвращает уроки, которые прошли через фильтрацию', () => {
-    expect(getters.filteredLessons);
-  });
-});
+    expect(getters.filteredLessons)
+  })
+})
 
 describe('Действия хранилища', () => {
-  it('заполняет хранилище ', () => { });
-});
+  it('заполняет хранилище ', () => { })
+})
 
 describe('Извлечение вариантов выбора', () => {
   const fetchers = [
@@ -274,15 +274,15 @@ describe('Извлечение вариантов выбора', () => {
       path: state.paths.address,
       selections: addresses,
     },
-  ];
+  ]
 
   for (const fetcher of fetchers) {
     it(`получает все уникальные значения поля ${fetcher.field}`, () => {
-      const values = availableValues(lessons, fetcher.path);
+      const values = availableValues(lessons, fetcher.path)
 
       expect(values).to.have.members(
         fetcher.selections.map(selection => selection.value),
-      );
-    });
+      )
+    })
   }
-});
+})

@@ -3,14 +3,12 @@
     <div class="panel-element switchers">
       <button
         class="button today-switcher"
-        @click="switchToCurrentWeek"
-      >
+        @click="switchToCurrentWeek">
         Сегодня
       </button>
       <button
         class="button week-switcher"
-        @click="switchToPreviousWeek"
-      >
+        @click="switchToPreviousWeek">
         &lt;
       </button>
       <div class="current-month">
@@ -18,8 +16,7 @@
       </div>
       <button
         class="button week-switcher"
-        @click="switchToNextWeek"
-      >
+        @click="switchToNextWeek">
         &gt;
       </button>
     </div>
@@ -29,8 +26,7 @@
         :key="day.getDay()"
         :class="{ current: $store.state.soloColumnIndex === index }"
         class="button week-day-switcher"
-        @click="setSoloColumnIndex({ index })"
-      >
+        @click="setSoloColumnIndex({ index })">
         <div class="day-name">
           {{ day | formatDate('dd') }}
         </div>
@@ -49,7 +45,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions } from 'vuex';
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   computed: {
@@ -68,7 +64,7 @@ export default {
       'switchToCurrentWeek',
     ]),
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -100,7 +96,7 @@ export default {
   margin: 0 10px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1100px) {
   .week-days-switchers {
     display: none;
   }

@@ -5,21 +5,21 @@
       :key="selector.name"
       :selections="selector.selections"
       :category="selector.category"
-      :label="selector.name"
-    />
+      :label="selector.name" />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import selector from './selector';
+import { mapGetters } from 'vuex'
+import selector from './selector'
 
 export default {
   components: { selector },
+
   computed: {
     ...mapGetters(['selectors']),
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

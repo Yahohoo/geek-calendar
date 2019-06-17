@@ -2,21 +2,31 @@
   <div
     :class="themeClass"
     class="card"
-    @click="toggleModal"
-  >
+    @click="toggleModal">
     <div class="header">
       <template v-if="isClosed">
         <img
           :src="cover"
-          class="cover"
-        >
+          class="cover">
         <div class="header-description">
-          <!-- <div class="address">{{ address }}</div> -->
-          <div class="address break-word">
-            {{ room }}
+          <div class="header-title break-word">
+            {{ title }}
           </div>
-          <div class="time">
-            {{ timing }}
+          <div class="header-description-info">
+            <div
+              v-if="age"
+              class="age">
+              <img
+                :src="require('@/assets/age-icon.svg')"
+                class="icon">
+              {{ age }}
+            </div>
+            <div v-if="duration">
+              <font-awesome-icon
+                class="icon"
+                icon="hourglass-half" />
+              {{ duration }} мин.
+            </div>
           </div>
         </div>
       </template>
@@ -31,41 +41,39 @@
         <div class="future-event-label" />
       </template>
     </div>
-    <div class="heading break-word">
-      {{ title }}
-    </div>
     <div class="description">
-      <div class="address break-word">
-        {{ room }}
-      </div>
       <div class="time">
+        <font-awesome-icon
+          class="icon"
+          :icon="['far', 'clock']" />
         {{ timing }}
       </div>
-      <div
-        v-if="age"
-        class="age"
-      >
-        {{ age }}
+      <div class="address break-word">
+        <font-awesome-icon
+          class="icon"
+          icon="map-marker-alt" />
+        {{ address }}
       </div>
       <div
-        v-if="event.teacher"
-        class="teacher"
-      >
+        v-if="event.teacher.name"
+        class="icon-line">
         <img
           :src="require('@/assets/avatar-inside-a-circle.svg')"
-          class="teacher-avatar"
-        >
-        <span class="teacher-name break-word">{{ event.teacher.name }}</span>
+          class="icon">
+        {{ event.teacher.name }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { format, addMinutes, isEqual } from 'date-fns';
-import ru from 'date-fns/locale/ru';
-import { mapMutations } from 'vuex';
-import { get, update } from 'lodash-es';
+import { format, addMinutes, isEqual } from 'date-fns'
+import ru from 'date-fns/locale/ru'
+import { mapMutations } from 'vuex'
+import { get, update } from 'lodash-es'
+
+const coverDefault = require('@/assets/cover-default.jpg')
+const avatarDefault = require('@/assets/avatar-default.png')
 
 export default {
   props: {
@@ -76,65 +84,69 @@ export default {
   },
 
   computed: {
-    timing() {
-      const start = new Date(this.event.startDate);
-      const end = addMinutes(start, this.event.baseLesson.duration);
-      const startString = format(start, 'HH:mm');
-      const endString = isEqual(start, end) ? '' : ` - ${format(end, 'HH:mm')}`;
+    duration() {
+      return this.event.baseLesson.duration
+    },
 
-      return startString + endString;
+    timing() {
+      const start = new Date(this.event.startDate)
+      const end = addMinutes(start, this.event.baseLesson.duration)
+      const startString = format(start, 'HH:mm')
+      const endString = isEqual(start, end) ? '' : ` - ${format(end, 'HH:mm')}`
+
+      return startString + endString
     },
 
     age() {
       let min; let max; let
-        type;
-      const bl = this.event.baseLesson;
+        type
+      const bl = this.event.baseLesson
 
       if (!bl.minClass && !bl.minAge) {
-        return null;
+        return null
       }
 
       if (bl.minClass) {
-        min = bl.minClass;
-        max = bl.maxClass;
-        type = ' класс';
+        min = bl.minClass
+        max = bl.maxClass
+        type = ' класс'
       } else {
-        min = bl.minAge;
-        max = bl.maxAge;
-        type = ' лет';
+        min = bl.minAge
+        max = bl.maxAge
+        type = ' лет'
       }
 
-      return `${min}${min !== max ? `-${max}` : ''} ${type}`;
+      return `${min}${min !== max ? `-${max}` : ''} ${type}`
     },
 
     isClosed() {
       // return this.event.baseLesson.status == 2
-      return true;
+      return true
     },
 
     themeClass() {
-      const lesson = this.event.baseLesson;
+      const lesson = this.event.baseLesson
 
       if (lesson.minClass === null && lesson.minAge === null) {
-        return 'no-age';
+        return 'no-age'
       } if (lesson.minAge && !lesson.minClass) {
-        return 'preschoolars';
+        return 'preschoolars'
       } if (lesson.minClass <= 2) {
-        return 'grades1-2';
+        return 'grades1-2'
       } if (lesson.minClass <= 4) {
-        return 'grades3-4';
+        return 'grades3-4'
       }
-      return 'grades5-11';
+      return 'grades5-11'
     },
 
     title() {
-      return this.event.baseLesson.name.trim();
+      return this.event.baseLesson.name.trim()
     },
 
     address() {
-      return this.$store.state.titles.address[
+      return this.$store.state.maps.address[
         get(this.event, this.$store.state.paths.address)
-      ];
+      ]
     },
 
     date() {
@@ -142,24 +154,24 @@ export default {
         new Date(this.event.startDate),
         'D MMMM YYYY, dddd',
         { locale: ru },
-      );
+      )
     },
 
     cover() {
-      return this.event.cover || require('@/assets/cover-default.jpg');
+      return this.event.cover || coverDefault
     },
 
     room() {
-      return this.event.room.name;
+      return this.event.room.name
     },
 
     teacher() {
-      let { teacher } = this.event;
+      let { teacher } = this.event
 
-      if (!teacher) return null;
+      if (!teacher) return null
 
-      teacher = { ...teacher };
-      return update(teacher, 'avatar', ava => ava || require('@/assets/avatar-default.png'));
+      teacher = { ...teacher }
+      return update(teacher, 'avatar', ava => ava || avatarDefault)
     },
 
     extractedData() {
@@ -177,18 +189,18 @@ export default {
         baseId: this.event.baseLesson.id,
         duration: this.event.baseLesson.duration,
         description: this.event.description,
-      };
+      }
     },
   },
 
   methods: {
     ...mapMutations(['setModalStatus', 'setModalData']),
     toggleModal() {
-      this.setModalStatus({ isOpened: true });
-      this.setModalData({ data: { ...this.extractedData } });
+      this.setModalStatus({ isOpened: true })
+      this.setModalData({ data: { ...this.extractedData } })
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -204,45 +216,80 @@ export default {
     margin-left: auto;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
       0 3px 1px -2px rgba(0, 0, 0, 0.12);
+    transition: 0.4s ease-out;
+    cursor: pointer;
+  }
+
+  // .card:hover::before {
+  //   content: 'Записаться';
+  //   position: absolute;
+  //   top: 0;
+  //   bottom: 0;
+  //   left: 0;
+  //   right: 0;
+  //   font-weight: bold;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   font-size: 0.8rem;
+  //   color: #00c853;
+  //   background-color: #ffffffdd;
+  //   border-radius: 16px;
+  // }
+
+  .card:hover {
+    // filter: blur(2px) opacity(0.6);
+    transform: scale(1.05);
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14),
+      0 4px 2px -3px rgba(0, 0, 0, 0.12);
   }
 
   .header {
     display: flex;
-    font-size: 0.6rem;
     align-items: center;
     margin-bottom: 8px;
   }
 
   .cover {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: block;
     object-fit: cover;
     margin-right: 5px;
   }
 
+  .header-title {
+    font-weight: bold;
+  }
+
   .header-description {
     min-width: 0;
   }
 
-  .heading {
-    font-weight: bold;
-    margin-bottom: 10px;
+  .header-description-info {
+    font-size: 0.6rem;
+    margin-top: 6px;
+    display: flex;
+    min-width: 0;
   }
 
   .age {
-    margin-bottom: 4px;
+    margin-right: 5px;
   }
 
-  .teacher {
+  .icon-line {
     display: flex;
     align-items: center;
   }
 
-  .teacher-avatar {
-    width: 15px;
-    height: 15px;
-    margin-right: 6px;
+  .info-line:not(:last-of-type) {
+    margin: 0 5px 5px 0;
+  }
+
+  .icon {
+    width: 10px;
+    height: 10px;
+    margin-right: 4px;
   }
 </style>

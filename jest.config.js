@@ -1,5 +1,5 @@
-process.env.VUE_CLI_BABEL_TARGET_NODE = true;
-process.env.VUE_CLI_BABEL_TRANSPILE_MODULES = true;
+process.env.VUE_CLI_BABEL_TARGET_NODE = true
+process.env.VUE_CLI_BABEL_TRANSPILE_MODULES = true
 
 module.exports = {
   moduleFileExtensions: [
@@ -26,4 +26,4 @@ module.exports = {
     '**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)',
   ],
   testURL: 'http://localhost/',
-};
+}

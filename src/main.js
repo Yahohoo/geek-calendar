@@ -1,20 +1,46 @@
-import Vue from 'vue';
-import '@fortawesome/fontawesome-free/css/all.css';
-import 'animate.css/animate.min.css';
-import { format } from 'date-fns';
-import ru from 'date-fns/locale/ru';
-import VeeValidate, { Validator } from 'vee-validate';
-import store from './store';
-import App from './App.vue';
+import Vue from 'vue'
+import 'animate.css/animate.min.css'
+import { format } from 'date-fns'
+import ru from 'date-fns/locale/ru'
+import VeeValidate, { Validator } from 'vee-validate'
 
-Vue.use(VeeValidate);
-Validator.localize('ru');
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {
+  faTimes,
+  faChevronDown,
+  faCheck,
+  faTimesCircle,
+  faHourglassHalf,
+  faMapMarkerAlt,
+} from '@fortawesome/free-solid-svg-icons'
+import {
+  faClock,
+} from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-Vue.config.productionTip = false;
+import App from './App.vue'
+import store from './store'
 
-Vue.filter('formatDate', (date, fmt) => format(date, fmt, { locale: ru }));
+library.add(
+  faTimes,
+  faChevronDown,
+  faCheck,
+  faTimesCircle,
+  faHourglassHalf,
+  faMapMarkerAlt,
+  faClock,
+)
 
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+Vue.use(VeeValidate)
+Validator.localize('ru')
+
+
+Vue.filter('formatDate', (date, fmt) => format(date, fmt, { locale: ru }))
+
+Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
   store,
-}).$mount('#app');
+}).$mount('#app')

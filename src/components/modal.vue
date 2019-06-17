@@ -1,23 +1,19 @@
 <template>
   <div
     v-show="isOpened"
-    class="enroll-modal-box"
-  >
+    class="enroll-modal-box">
     <div
       :class="data.themeClass"
-      class="enroll-modal"
-    >
-      <i
-        style="font-size: 22px"
-        class="fa fa-times modal-close"
-        @click="closeModal"
-      />
+      class="enroll-modal">
+      <font-awesome-icon
+        class="modal-close"
+        icon="times"
+        @click="closeModal" />
       <div class="modal-header modal-block">
         <img
           :src="data.cover"
           class="modal-header-cover"
-          alt
-        >
+          alt>
         <div class="modal-header-info">
           <div class="modal-header-title">
             {{ data.title }}
@@ -27,19 +23,16 @@
               <img
                 :src="require('@/assets/age-icon.svg')"
                 class="extra-item-icon"
-                alt
-              >
+                alt>
               {{ data.age }}
             </span>
             <span
               v-if="data.duration"
-              class="header-extra-item duration"
-            >
+              class="header-extra-item duration">
               <img
                 :src="require('@/assets/clock.svg')"
                 class="extra-item-icon"
-                alt
-              >
+                alt>
               {{ data.duration }} мин
             </span>
           </div>
@@ -48,11 +41,9 @@
 
       <div
         :class="{'opened-enroll': isFormOpened}"
-        class="enroll-switcher"
-      >
+        class="enroll-switcher">
         <div
-          class="pre-enroll"
-        >
+          class="pre-enroll">
           <div class="event-info">
             <div class="event-info-item date">
               {{ data.date }}
@@ -66,36 +57,31 @@
           </div>
           <button
             class="modal-button show-form"
-            @click="showForm"
-          >
+            @click="showForm">
             Запись
           </button>
         </div>
 
         <div
-          class="modal-enroll modal-block"
-        >
+          class="modal-enroll modal-block">
           <div class="modal-enroll-form">
             <labeled-input
               :is-active="isNameActive"
               class="enroll-field-wrap"
-              label="Имя"
-            >
+              label="Имя">
               <input
                 v-model="enrollForm.name"
                 class="enroll-input enroll-input-field"
                 type="text"
                 required
                 @focus="enrollFormFocus.name = true"
-                @blur="enrollFormFocus.name = false"
-              >
+                @blur="enrollFormFocus.name = false">
             </labeled-input>
 
             <labeled-input
               :is-active="isPhoneActive"
               class="enroll-field-wrap"
-              label="Телефон"
-            >
+              label="Телефон">
               <input
                 ref="phone"
                 v-model="enrollForm.phone"
@@ -107,15 +93,13 @@
                 title="+79996662233"
                 required
                 @focus="enrollFormFocus.phone = true"
-                @blur="enrollFormFocus.phone = false"
-              >
+                @blur="enrollFormFocus.phone = false">
             </labeled-input>
 
             <labeled-input
               :is-active="isEmailActive"
               class="enroll-field-wrap"
-              label="Email"
-            >
+              label="Email">
               <input
                 v-model="enrollForm.email"
                 v-validate
@@ -123,14 +107,12 @@
                 class="enroll-input enroll-input-field"
                 type="email"
                 @focus="enrollFormFocus.email = true"
-                @blur="enrollFormFocus.email = false"
-              >
+                @blur="enrollFormFocus.email = false">
             </labeled-input>
 
             <button
               class="modal-button enroll-input submit-enroll"
-              @click="sendEnrollRequest"
-            >
+              @click="sendEnrollRequest">
               Записаться
             </button>
           </div>
@@ -148,8 +130,7 @@
 
       <div
         v-if="tabs.length"
-        class="modal-about modal-block"
-      >
+        class="modal-about modal-block">
         <div class="modal-about-tabs">
           <div
             v-for="tab in tabs"
@@ -157,8 +138,7 @@
             :style="{cursor: tabs.length > 1 ? 'pointer' : 'default'}"
             :class="{current: isCurrentTab(tab.tab) && tabs.length > 1}"
             class="modal-about-tab"
-            @click="currentTab = tab.tab"
-          >
+            @click="currentTab = tab.tab">
             {{ tab.name }}
           </div>
         </div>
@@ -166,19 +146,16 @@
           v-for="tab in tabs"
           v-show="isCurrentTab(tab.tab)"
           :key="tab.name"
-          class="modal-about-tab-body"
-        >
+          class="modal-about-tab-body">
           {{ tab.content }}
         </div>
       </div>
       <div
         v-if="data.teacher"
-        class="modal-teacher modal-block"
-      >
+        class="modal-teacher modal-block">
         <img
           :src="data.teacher.avatar"
-          class="modal-teacher-photo"
-        >
+          class="modal-teacher-photo">
         <div class="modal-teacher-info">
           <span class="modal-teacher-heading">Преподаватель</span>
           <br>
@@ -190,8 +167,8 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex';
-import labeledInput from './labeled-input.vue';
+import { mapMutations, mapState } from 'vuex'
+import labeledInput from './labeled-input.vue'
 
 export default {
   components: {
@@ -212,7 +189,7 @@ export default {
         email: false,
         phone: false,
       },
-    };
+    }
   },
 
   computed: {
@@ -242,64 +219,62 @@ export default {
           name: 'Видео',
           content: this.data.video,
         },
-      ].filter(tab => tab.content);
+      ].filter(tab => tab.content)
     },
     initialTab() {
-      return this.tabs.length ? this.tabs[0].tab : null;
+      return this.tabs.length ? this.tabs[0].tab : null
     },
     formMetaData() {
       return {
         lessonId: this.data.id,
         regSourceId: 2, // поменять
-      };
+      }
     },
     isNameActive() {
-      return Boolean(this.enrollForm.name || this.enrollFormFocus.name);
+      return Boolean(this.enrollForm.name || this.enrollFormFocus.name)
     },
     isEmailActive() {
-      return Boolean(this.enrollForm.email || this.enrollFormFocus.email);
+      return Boolean(this.enrollForm.email || this.enrollFormFocus.email)
     },
     isPhoneActive() {
-      return Boolean(this.enrollForm.phone || this.enrollFormFocus.phone);
+      return Boolean(this.enrollForm.phone || this.enrollFormFocus.phone)
     },
   },
 
   methods: {
     ...mapMutations(['setModalStatus']),
     closeModal() {
-      this.setModalStatus({ isOpened: false });
-      this.isFormOpened = false;
+      this.setModalStatus({ isOpened: false })
+      this.isFormOpened = false
     },
     showForm() {
-      this.isFormOpened = true;
+      this.isFormOpened = true
     },
     isCurrentTab(tab) {
-      return (this.currentTab || this.initialTab) === tab;
+      return (this.currentTab || this.initialTab) === tab
     },
     sendEnrollRequest() {
-      const form = new FormData();
+      const form = new FormData()
 
       const data = Object.entries(Object.assign(
         {}, this.formMetaData, this.enrollForm,
-      ));
+      ))
 
-      for (const dataPair of data) {
-        form.append(...dataPair);
-      }
+      data.forEach(bite => form.append(...bite))
 
       fetch(
         'https://db2.gekkon-club.ru/api/add-lead',
         { method: 'POST', body: form },
       ).then((resp) => {
         if (resp.ok) {
-
+          console.log('Каеф')
         } else {
-
+          console.log('Плоха')
         }
-      });
+      })
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
