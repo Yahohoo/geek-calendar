@@ -6,7 +6,8 @@
     <div class="header">
       <template v-if="isClosed">
         <img
-          :src="cover"
+          v-if="event.cover"
+          :src="event.cover"
           class="cover">
         <div class="header-description">
           <div class="header-title break-word">
@@ -16,10 +17,13 @@
             <div
               v-if="age"
               class="age">
-              <img
+              <font-awesome-icon
+                class="icon"
+                icon="child" />
+              <!-- <img
                 :src="require('@/assets/age-icon.svg')"
-                class="icon">
-              {{ age }}
+                class="icon"> -->
+              <span>{{ age }}</span>
             </div>
             <div v-if="duration">
               <font-awesome-icon
@@ -42,24 +46,27 @@
       </template>
     </div>
     <div class="description">
-      <div class="time">
+      <div class="description-item">
         <font-awesome-icon
           class="icon"
           :icon="['far', 'clock']" />
         {{ timing }}
       </div>
-      <div class="address break-word">
+      <div class="description-item break-word">
         <font-awesome-icon
           class="icon"
           icon="map-marker-alt" />
         {{ address }}
       </div>
       <div
-        v-if="event.teacher.name"
-        class="icon-line">
-        <img
+        v-if="event.teacher && event.teacher.name"
+        class="description-item">
+        <!-- <img
           :src="require('@/assets/avatar-inside-a-circle.svg')"
-          class="icon">
+          class="icon"> -->
+        <font-awesome-icon
+          class="icon"
+          icon="chalkboard-teacher" />
         {{ event.teacher.name }}
       </div>
     </div>
@@ -72,7 +79,7 @@ import ru from 'date-fns/locale/ru'
 import { mapMutations } from 'vuex'
 import { get, update } from 'lodash-es'
 
-const coverDefault = require('@/assets/cover-default.jpg')
+// const coverDefault = require('@/assets/cover-default.jpg')
 const avatarDefault = require('@/assets/avatar-default.png')
 
 export default {
@@ -155,10 +162,6 @@ export default {
         'D MMMM YYYY, dddd',
         { locale: ru },
       )
-    },
-
-    cover() {
-      return this.event.cover || coverDefault
     },
 
     room() {
@@ -247,7 +250,7 @@ export default {
   .header {
     display: flex;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   .cover {
@@ -278,18 +281,20 @@ export default {
     margin-right: 5px;
   }
 
-  .icon-line {
-    display: flex;
-    align-items: center;
-  }
-
   .info-line:not(:last-of-type) {
     margin: 0 5px 5px 0;
   }
 
   .icon {
-    width: 10px;
-    height: 10px;
-    margin-right: 4px;
+    display: inline-flex;
+    width: 15px;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: gray;
+    margin-right: 5px;
+  }
+
+  .description-item {
+    margin-bottom: 4px;
   }
 </style>

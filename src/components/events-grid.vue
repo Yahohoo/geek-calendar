@@ -4,8 +4,11 @@
       <div
         v-for="(day, index) in currentWeekDays"
         :key="index"
-        :class="{solo: $store.state.soloColumnIndex === index}"
-        class="col">
+        :class="{
+          slideInLeft: $store.state.soloColumnIndex === index,
+          solo: $store.state.soloColumnIndex === index
+        }"
+        class="col animated faster">
         <div
           :class="{'current-day': isToday(day)}"
           class="col-head">

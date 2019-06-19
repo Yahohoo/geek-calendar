@@ -12,6 +12,8 @@ import {
   faTimesCircle,
   faHourglassHalf,
   faMapMarkerAlt,
+  faChild,
+  faChalkboardTeacher,
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faClock,
@@ -29,6 +31,8 @@ library.add(
   faHourglassHalf,
   faMapMarkerAlt,
   faClock,
+  faChild,
+  faChalkboardTeacher,
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

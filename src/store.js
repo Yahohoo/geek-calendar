@@ -101,31 +101,68 @@ export const state = {
   },
 }
 
+const getParams = state => ({
+  filters: state.filters,
+  date: {
+    week: state.currentWeekStartDay,
+    day: state.soloColumnIndex,
+  },
+})
+
+const getEncodedParams = state => encodeURI(JSON.stringify(getParams(state)))
+
+const updateHistory = (state) => {
+  window.history.pushState(
+    {},
+    '',
+    `?state=${getEncodedParams(state)}`,
+  )
+}
+
+const setWeekStart = (state, { startDay }) => {
+  state.currentWeekStartDay = startDay
+  updateHistory(state)
+}
+
+const setSoloColumnIndex = (state, { index }) => {
+  state.soloColumnIndex = index
+  updateHistory(state)
+}
+
 export const mutations = {
+  setSoloColumnIndex,
+  setWeekStart,
+
   setLessons: (state, lessons) => {
     state.lessons = lessons
   },
 
   setWeekToNext: (state) => {
-    state.currentWeekStartDay = addWeeks(state.currentWeekStartDay, 1)
+    const startDay = addWeeks(state.currentWeekStartDay, 1)
+    setWeekStart(state, { startDay })
   },
 
   setWeekToPrevious: (state) => {
-    state.currentWeekStartDay = subWeeks(state.currentWeekStartDay, 1)
+    const startDay = subWeeks(state.currentWeekStartDay, 1)
+    setWeekStart(state, { startDay })
   },
 
   setWeekToCurrent: (state) => {
-    state.currentWeekStartDay = startOfWeek(new Date(), { weekStartsOn: 1 })
-    state.soloColumnIndex = getISODay(new Date()) - 1
+    const startDay = startOfWeek(new Date(), { weekStartsOn: 1 })
+    const index = getISODay(new Date()) - 1
+    setSoloColumnIndex(state, { index })
+    setWeekStart(state, { startDay })
   },
 
   updateFilter: (state, { category, selection }) => {
     state.filters[category] = selection
+    updateHistory(state)
   },
 
-  setSoloColumnIndex: (state, { index }) => {
-    state.soloColumnIndex = index
+  updateFilters: (state, { filters }) => {
+    state.filters = filters
   },
+
 
   setLoadedStatus: (state, { isLoaded }) => {
     state.isDataLoaded = isLoaded

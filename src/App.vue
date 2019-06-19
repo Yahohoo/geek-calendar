@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 import modal from './components/modal.vue'
 import selectors from './components/selectors'
 import controlPanel from './components/control-panel.vue'
@@ -28,7 +28,23 @@ export default {
     this.loadDataForWeek()
   },
 
+  mounted() {
+    const { href } = window.location
+    const params = new window.URL(href).searchParams
+    const state = JSON.parse(params.get('state'))
+
+    if (state && state.filters) {
+      this.updateFilters({ filters: state.filters })
+    }
+
+    if (state && state.date) {
+      this.setSoloColumnIndex({ index: +state.date.day })
+      this.setWeekStart({ startDay: new Date(state.date.week) })
+    }
+  },
+
   methods: {
+    ...mapMutations(['updateFilters', 'setSoloColumnIndex', 'setWeekStart']),
     ...mapActions(['loadDataForWeek']),
   },
 }

@@ -11,9 +11,9 @@
         @click="closeModal" />
       <div class="modal-header modal-block">
         <img
+          v-if="data.cover"
           :src="data.cover"
-          class="modal-header-cover"
-          alt>
+          class="modal-header-cover">
         <div class="modal-header-info">
           <div class="modal-header-title">
             {{ data.title }}

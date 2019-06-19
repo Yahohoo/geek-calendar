@@ -30,26 +30,28 @@
       </div>
     </labeled-input>
     <div class="dropdown-wrapper">
-      <div
-        v-if="opened"
-        class="dropdown">
-        <label
-          v-for="selection in selections"
-          :key="selection.title"
-          class="item">
-          <input
-            v-model="selected"
-            :value="selection"
-            type="checkbox">
-          <div class="selection">{{ selection.title }}</div>
-          <div class="checkbox">
-            <font-awesome-icon
-              v-if="selected.includes(selection)"
-              icon="check"
-              class="icon" />
-          </div>
-        </label>
-      </div>
+      <transition name="dropdown">
+        <div
+          v-if="opened"
+          class="dropdown">
+          <label
+            v-for="selection in selections"
+            :key="selection.title"
+            class="item">
+            <input
+              v-model="selected"
+              :value="selection"
+              type="checkbox">
+            <div class="selection">{{ selection.title }}</div>
+            <div class="checkbox">
+              <font-awesome-icon
+                v-if="some(selected, selection)"
+                icon="check"
+                class="icon" />
+            </div>
+          </label>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -57,6 +59,7 @@
 <script>
 import { mapMutations } from 'vuex'
 import { mixin as clickaway } from 'vue-clickaway'
+import { some } from 'lodash-es'
 import labeledInput from './labeled-input.vue'
 
 export default {
@@ -104,7 +107,7 @@ export default {
     },
 
     isActive() {
-      return this.selected.length || this.opened
+      return Boolean(this.selected.length || this.opened)
     },
 
     isFilled() {
@@ -114,6 +117,8 @@ export default {
 
   methods: {
     ...mapMutations(['updateFilter']),
+
+    some,
 
     blur() {
       this.opened = false
@@ -177,6 +182,26 @@ $active: #7281f1;
 .fa-chevron-down {
   margin-left: 5px;
 }
+
+.dropdown-enter-active, .dropdown-leave-active {
+  transition: opacity .5s;
+}
+.dropdown-enter, .dropdown-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
+
+// .dropdown-enter-active, .dropdown-leave-active {
+//   overflow: hidden;
+//   transition: all 1s ease-out;
+// }
+
+// .dropdown-enter, .dropdown-leave-to {
+//   max-height: 0;
+// }
+
+// .dropdown-enter-to {
+//   max-height: 300px;
+// }
 
 .dropdown-wrapper {
   position: relative;
