@@ -19,20 +19,20 @@
             {{ data.title }}
           </div>
           <div class="modal-header-extra">
-            <span class="header-extra-item age">
-              <img
-                :src="require('@/assets/age-icon.svg')"
+            <span
+              v-if="data.age"
+              class="header-extra-item age">
+              <font-awesome-icon
                 class="extra-item-icon"
-                alt>
+                icon="child" />
               {{ data.age }}
             </span>
             <span
               v-if="data.duration"
               class="header-extra-item duration">
-              <img
-                :src="require('@/assets/clock.svg')"
+              <font-awesome-icon
                 class="extra-item-icon"
-                alt>
+                icon="hourglass-half" />
               {{ data.duration }} мин
             </span>
           </div>
@@ -384,6 +384,7 @@ export default {
 
   .header-extra-item {
     display: inline-flex;
+    align-items: center;
     height: 20px;
     line-height: 20px;
     vertical-align: middle;
@@ -391,9 +392,7 @@ export default {
   }
 
   .extra-item-icon {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
+
     margin-right: 5px;
   }
 

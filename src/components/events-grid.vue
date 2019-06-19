@@ -21,9 +21,12 @@
         </div>
         <template v-if="$store.state.isDataLoaded">
           <transition-group
+            tag="div"
+            class="tr-wrapper"
             appear
-            enter-active-class="animated fadeInUp"
-            leave-active-class="animated bounceOutRig">
+            enter-active-class="animated fadeInUp">
+            <!-- leave-class="invis" -->
+            <!-- leave-active-class="fade"> -->
             <div
               v-if="!weekSchedule[index].length"
               key="free-day"
@@ -98,6 +101,25 @@ export default {
 
 .events-grid {
   display: flex;
+}
+
+.tr-wrapper {
+  max-width: 400px;
+  margin: auto;
+  position: relative;
+}
+
+.invis {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.fade {
+  visibility: hidden;
+  position: absolute;
+  // opacity: 0;
+  // transition: all 1s ease-out;
+  // transform: translateX(-100px);
 }
 
 .col {

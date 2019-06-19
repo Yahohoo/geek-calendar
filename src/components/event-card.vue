@@ -20,10 +20,7 @@
               <font-awesome-icon
                 class="icon"
                 icon="child" />
-              <!-- <img
-                :src="require('@/assets/age-icon.svg')"
-                class="icon"> -->
-              <span>{{ age }}</span>
+              {{ age }}
             </div>
             <div v-if="duration">
               <font-awesome-icon
@@ -214,9 +211,7 @@ export default {
     border-width: 0 0 0 7px;
     margin-bottom: 10px;
     padding: 7px;
-      max-width: 400px;
-    margin-right: auto;
-    margin-left: auto;
+    max-width: 400px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
       0 3px 1px -2px rgba(0, 0, 0, 0.12);
     transition: 0.4s ease-out;

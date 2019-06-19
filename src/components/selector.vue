@@ -18,6 +18,11 @@
           class="current-selection">
           {{ selected.map(selection => selection.title).join(', ') }}
         </div>
+        <div
+          v-else-if="opened && !isFilled"
+          class="tip">
+          Выберите фильтр
+        </div>
         <div class="control">
           <font-awesome-icon
             v-if="selected.length"
@@ -160,6 +165,11 @@ $active: #7281f1;
   transition: all 0.3s ease;
 }
 
+.tip {
+  font-size: 0.8rem;
+  color: lightslategrey;
+}
+
 .current-selection {
   width: 85%;
   white-space: nowrap;
@@ -183,12 +193,12 @@ $active: #7281f1;
   margin-left: 5px;
 }
 
-.dropdown-enter-active, .dropdown-leave-active {
-  transition: opacity .5s;
-}
-.dropdown-enter, .dropdown-leave-to /* .fade-leave-active до версии 2.1.8 */ {
-  opacity: 0;
-}
+// .dropdown-enter-active, .dropdown-leave-active {
+//   transition: opacity .5s;
+// }
+// .dropdown-enter, .dropdown-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+//   opacity: 0;
+// }
 
 // .dropdown-enter-active, .dropdown-leave-active {
 //   overflow: hidden;
