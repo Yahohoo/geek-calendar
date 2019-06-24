@@ -14,9 +14,12 @@ import {
   faMapMarkerAlt,
   faChild,
   faChalkboardTeacher,
+  faCaretLeft,
+  faCaretRight,
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faClock,
+  faCalendarAlt,
 } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -33,6 +36,9 @@ library.add(
   faClock,
   faChild,
   faChalkboardTeacher,
+  faCaretLeft,
+  faCaretRight,
+  faCalendarAlt,
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

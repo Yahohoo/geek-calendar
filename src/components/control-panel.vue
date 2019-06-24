@@ -1,24 +1,34 @@
 <template>
   <div class="panel">
-    <div class="panel-element switchers">
-      <button
-        class="button today-switcher"
-        @click="switchToCurrentWeek">
-        Сегодня
-      </button>
-      <button
-        class="button week-switcher"
-        @click="switchToPreviousWeek">
-        &lt;
-      </button>
-      <div class="current-month">
-        {{ currentMonth }}
+    <div class="panel-element">
+      <div class="switchers">
+        <button
+          class="button today-switcher"
+          @click="switchToCurrentWeek">
+          Сегодня
+        </button>
+        <font-awesome-icon
+          class="week-switcher"
+          icon="caret-left"
+          @click="switchToPreviousWeek" />
+        <button
+          class="current-month button"
+          @click="switchDatepickerShow">
+          <font-awesome-icon :icon="['far', 'calendar-alt']" />
+          {{ currentMonth }}
+        </button>
+        <font-awesome-icon
+          class="week-switcher"
+          icon="caret-right"
+          @click="switchToNextWeek" />
       </div>
-      <button
-        class="button week-switcher"
-        @click="switchToNextWeek">
-        &gt;
-      </button>
+      <datepicker
+        v-if="showDatepicker"
+        v-on-clickaway="switchDatepickerShow"
+        class="panel-element datepicker"
+        :language="ru"
+        inline
+        @selected="handleDatePick" />
     </div>
     <div class="panel-element week-days-switchers">
       <button
@@ -46,23 +56,57 @@
 
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { mixin as clickaway } from 'vue-clickaway'
+
+import Datepicker from 'vuejs-datepicker'
+import { ru } from 'vuejs-datepicker/src/locale'
+
+import {
+  startOfWeek,
+  getISODay,
+} from 'date-fns'
 
 export default {
+  components: {
+    Datepicker,
+  },
+
+  mixins: [clickaway],
+
+  data() {
+    return {
+      ru,
+      showDatepicker: false,
+    }
+  },
+
   computed: {
     ...mapGetters([
       'currentMonth',
       'currentWeekDays',
     ]),
   },
+
   methods: {
     ...mapMutations([
       'setSoloColumnIndex',
+      'setWeekStart',
     ]),
+
     ...mapActions([
       'switchToNextWeek',
       'switchToPreviousWeek',
       'switchToCurrentWeek',
     ]),
+
+    switchDatepickerShow() {
+      this.showDatepicker = !this.showDatepicker
+    },
+
+    handleDatePick(date) {
+      this.setWeekStart({ startDay: startOfWeek(date, { weekStartsOn: 1 }) })
+      this.setSoloColumnIndex({ index: getISODay(date) - 1 })
+    },
   },
 }
 </script>
@@ -75,6 +119,8 @@ export default {
   justify-content: space-around;
   flex-wrap: wrap;
   color: #7f8285;
+  position: relative;
+  align-items: flex-start;
 }
 
 .panel-element {
@@ -82,6 +128,7 @@ export default {
 }
 
 .switchers {
+  justify-content: center;
   align-items: center;
   display: flex;
 }
@@ -91,15 +138,26 @@ export default {
 }
 
 .current-month {
+  cursor: pointer;
   text-transform: capitalize;
   font-size: 1.1rem;
   margin: 0 10px;
+}
+
+.datepicker {
+  // position: absolute;
+  margin: 10px;
 }
 
 @media (min-width: 1100px) {
   .week-days-switchers {
     display: none;
   }
+}
+
+.week-switcher {
+  cursor: pointer;
+  font-size: 2rem;
 }
 
 .week-day-switcher {

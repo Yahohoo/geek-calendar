@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapActions, mapMutations } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
 import modal from './components/modal.vue'
 import selectors from './components/selectors'
 import controlPanel from './components/control-panel.vue'
@@ -22,6 +22,30 @@ export default {
     selectors,
     controlPanel,
     eventsGrid,
+  },
+
+  computed: {
+    ...mapState(['filters', 'currentWeekStartDay', 'soloColumnIndex']),
+
+    paramsForSearchString() {
+      return {
+        filters: this.filters,
+        date: {
+          week: this.currentWeekStartDay,
+          day: this.soloColumnIndex,
+        },
+      }
+    },
+  },
+
+  watch: {
+    paramsForSearchString(newParams) {
+      window.history.pushState(
+        {},
+        '',
+        `?state=${encodeURI(JSON.stringify(newParams))}`,
+      )
+    },
   },
 
   created() {

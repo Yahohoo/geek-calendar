@@ -1,7 +1,6 @@
 /* eslint-disable no-shadow */
 import Vuex from 'vuex'
 import Vue from 'vue'
-
 import {
   get,
   keys,
@@ -101,32 +100,12 @@ export const state = {
   },
 }
 
-const getParams = state => ({
-  filters: state.filters,
-  date: {
-    week: state.currentWeekStartDay,
-    day: state.soloColumnIndex,
-  },
-})
-
-const getEncodedParams = state => encodeURI(JSON.stringify(getParams(state)))
-
-const updateHistory = (state) => {
-  window.history.pushState(
-    {},
-    '',
-    `?state=${getEncodedParams(state)}`,
-  )
-}
-
 const setWeekStart = (state, { startDay }) => {
   state.currentWeekStartDay = startDay
-  updateHistory(state)
 }
 
 const setSoloColumnIndex = (state, { index }) => {
   state.soloColumnIndex = index
-  updateHistory(state)
 }
 
 export const mutations = {
@@ -156,7 +135,7 @@ export const mutations = {
 
   updateFilter: (state, { category, selection }) => {
     state.filters[category] = selection
-    updateHistory(state)
+    state.filters = { ...(state.filters), [category]: selection }
   },
 
   updateFilters: (state, { filters }) => {
@@ -255,15 +234,17 @@ export const getters = {
     const isSameMonth = startMonth === endMonth
     const isSameYear = startYear === endYear
 
+    /* eslint-disable */
     return `
       ${startMonth} ${
-  !isSameYear ? startYear : ''
-} ${
-  !isSameMonth ? ` - ${endMonth}` : ''
-} ${
-  endYear
-}
+        !isSameYear ? startYear : ''
+      } ${
+        !isSameMonth ? ` - ${endMonth}` : ''
+      } ${
+        endYear
+      }
     `
+    /* eslint enable */
   },
 
   lessonsForCurrentWeek: (state, { currentWeekDays }) => state
