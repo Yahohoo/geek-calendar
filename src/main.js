@@ -23,8 +23,10 @@ import {
 } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+import pym from 'pym.js'
 import App from './App.vue'
 import store from './store'
+
 
 library.add(
   faTimes,
@@ -46,10 +48,12 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(VeeValidate)
 Validator.localize('ru')
 
+Vue.prototype.$frame = new pym.Child()
 
 Vue.filter('formatDate', (date, fmt) => format(date, fmt, { locale: ru }))
 
 Vue.config.productionTip = false
+
 new Vue({
   render: h => h(App),
   store,

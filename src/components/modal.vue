@@ -3,6 +3,7 @@
     v-show="isOpened"
     class="enroll-modal-box">
     <div
+      :style="{ top }"
       :class="data.themeClass"
       class="enroll-modal">
       <font-awesome-icon
@@ -89,9 +90,7 @@
                 data-vv-as="Номер телефона"
                 class="enroll-input enroll-input-field"
                 type="tel"
-                pattern="\+7[0-9]{10}"
                 title="+79996662233"
-                required
                 @focus="enrollFormFocus.phone = true"
                 @blur="enrollFormFocus.phone = false">
             </labeled-input>
@@ -170,6 +169,19 @@
 import { mapMutations, mapState } from 'vuex'
 import labeledInput from './labeled-input.vue'
 
+function parsePositionMessage(message) {
+  message = message.split(' ')
+
+  return {
+    viewportWidth: message[0],
+    viewportHeight: message[1],
+    top: message[2],
+    left: message[3],
+    bottom: message[4],
+    right: message[5],
+  }
+}
+
 export default {
   components: {
     labeledInput,
@@ -189,6 +201,7 @@ export default {
         email: false,
         phone: false,
       },
+      top: 0,
     }
   },
 
@@ -247,6 +260,10 @@ export default {
     },
   },
 
+  mounted() {
+    this.$frame.onMessage('viewport-iframe-position', this.repositeModal)
+  },
+
   methods: {
     ...mapMutations(['setModalStatus']),
 
@@ -282,6 +299,17 @@ export default {
           console.log('Плоха')
         }
       })
+    },
+
+    repositeModal: (message) => {
+      const parsedMessage = parsePositionMessage(message)
+      const isMobile = parsedMessage.viewportWidth <= 480
+      const margin = isMobile ? 50 : 100
+      const top = parsedMessage.top > 0 ? margin : -parsedMessage.top + margin
+
+      // if (!this.isOpened) {
+      this.top = top
+      // }
     },
   },
 }
