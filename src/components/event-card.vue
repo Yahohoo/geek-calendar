@@ -58,9 +58,6 @@
       <div
         v-if="event.teacher && event.teacher.name"
         class="description-item">
-        <!-- <img
-          :src="require('@/assets/avatar-inside-a-circle.svg')"
-          class="icon"> -->
         <font-awesome-icon
           class="icon"
           icon="chalkboard-teacher" />
@@ -123,7 +120,7 @@ export default {
     },
 
     isClosed() {
-      // return this.event.baseLesson.status == 2
+      // return this.event.baseLesson.status == 2 TODO
       return true
     },
 

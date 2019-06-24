@@ -117,9 +117,6 @@ export default {
 .fade {
   visibility: hidden;
   position: absolute;
-  // opacity: 0;
-  // transition: all 1s ease-out;
-  // transform: translateX(-100px);
 }
 
 .col {
