@@ -76,7 +76,6 @@ import ru from 'date-fns/locale/ru'
 import { mapMutations } from 'vuex'
 import { get, update } from 'lodash-es'
 
-// const coverDefault = require('@/assets/cover-default.jpg')
 const avatarDefault = require('@/assets/avatar-default.png')
 
 export default {

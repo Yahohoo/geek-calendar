@@ -22,13 +22,17 @@
           icon="caret-right"
           @click="switchToNextWeek" />
       </div>
-      <datepicker
-        v-if="showDatepicker"
-        v-on-clickaway="switchDatepickerShow"
-        class="panel-element datepicker"
-        :language="ru"
-        inline
-        @selected="handleDatePick" />
+      <div
+        id="datepicker"
+        class="panel-element datepicker">
+        <datepicker
+          v-if="showDatepicker"
+          v-on-clickaway="switchDatepickerShow"
+          monday-first
+          :language="ru"
+          inline
+          @selected="handleDatePick" />
+      </div>
     </div>
     <div class="panel-element week-days-switchers">
       <button
@@ -145,7 +149,6 @@ export default {
 }
 
 .datepicker {
-  // position: absolute;
   margin: 10px;
 }
 
@@ -162,6 +165,7 @@ export default {
 
 .week-day-switcher {
   margin: 0 5px;
+  width: 35px;
 }
 
 .week-day-switcher.current {
@@ -183,5 +187,24 @@ export default {
   border-style: solid;
   border-width: 0 0 2px 0;
   border-radius: 1px;
+}
+</style>
+
+<style >
+#datepicker .cell.day.selected {
+  background-color: #7281f1;
+  color: #fff;
+}
+
+#datepicker .cell.day:hover:not(.blank) {
+  border-color: #7281f1;
+}
+
+#datepicker .vdp-datepicker__calendar header .next:after {
+  border-left: 10px solid #7f8285;
+}
+
+#datepicker .vdp-datepicker__calendar header .prev:after{
+  border-right: 10px solid #7f8285;
 }
 </style>
