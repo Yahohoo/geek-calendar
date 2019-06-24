@@ -197,6 +197,7 @@ export default {
       isOpened: 'isModalOpened',
       data: 'modalData',
     }),
+
     tabs() {
       return [
         {
@@ -221,21 +222,26 @@ export default {
         },
       ].filter(tab => tab.content)
     },
+
     initialTab() {
       return this.tabs.length ? this.tabs[0].tab : null
     },
+
     formMetaData() {
       return {
         lessonId: this.data.id,
         regSourceId: 2, // поменять TODO
       }
     },
+
     isNameActive() {
       return Boolean(this.enrollForm.name || this.enrollFormFocus.name)
     },
+
     isEmailActive() {
       return Boolean(this.enrollForm.email || this.enrollFormFocus.email)
     },
+
     isPhoneActive() {
       return Boolean(this.enrollForm.phone || this.enrollFormFocus.phone)
     },
@@ -243,16 +249,20 @@ export default {
 
   methods: {
     ...mapMutations(['setModalStatus']),
+
     closeModal() {
       this.setModalStatus({ isOpened: false })
       this.isFormOpened = false
     },
+
     showForm() {
       this.isFormOpened = true
     },
+
     isCurrentTab(tab) {
       return (this.currentTab || this.initialTab) === tab
     },
+
     sendEnrollRequest() {
       const form = new FormData()
 
