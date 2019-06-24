@@ -88,7 +88,6 @@ body {
   @import url('https://fonts.googleapis.com/css?family=Open+Sans');
   font-family: 'Ubuntu', sans-serif;
   color: #212121;
-  // max-width: 1200px;
   margin: auto;
   padding: 5px;
 }

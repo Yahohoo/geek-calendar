@@ -227,7 +227,7 @@ export default {
     formMetaData() {
       return {
         lessonId: this.data.id,
-        regSourceId: 2, // поменять
+        regSourceId: 2, // поменять TODO
       }
     },
     isNameActive() {
