@@ -274,9 +274,11 @@ export const actions = {
 
     const dateForApi = format(state.currentWeekStartDay, 'DD-MM-YYYY')
     const response = await fetch(`https://db2.gekkon-club.ru/api/calendar?from=${dateForApi}`)
-
+    
     commit('setLessons', await response.json())
     commit('setLoadedStatus', { isLoaded: true })
+    
+    this._vm.$frame.sendHeight()
   },
 
   switchToCurrentWeek({ dispatch, commit }) {
