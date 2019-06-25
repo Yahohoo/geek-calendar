@@ -46,12 +46,15 @@ export default {
   },
 
   created() {
-    this.loadDataForWeek()
+    this.$frame.sendMessage('ready')
+    this.$frame.onMessage('data-src', (dataSrc) => {
+      this.setDataSrc({ dataSrc })
+      this.loadDataForWeek()
+    })
   },
 
   mounted() {
     const { href } = window.location
-    console.log(href)
     const params = new window.URL(href).searchParams
     const state = JSON.parse(params.get('__sched_state'))
 
@@ -66,7 +69,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['updateFilters', 'setSoloColumnIndex', 'setWeekStart']),
+    ...mapMutations(['updateFilters', 'setSoloColumnIndex', 'setWeekStart', 'setDataSrc']),
     ...mapActions(['loadDataForWeek']),
   },
 }

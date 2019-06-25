@@ -27,6 +27,8 @@ import ru from 'date-fns/locale/ru'
 Vue.use(Vuex)
 
 export const state = {
+  dataSrc: null,
+
   lessons: [],
   isDataLoaded: false,
   soloColumnIndex: getISODay(new Date()) - 1,
@@ -154,6 +156,10 @@ export const mutations = {
   setModalData: (state, { data }) => {
     state.modalData = data
   },
+
+  setDataSrc: (state, { dataSrc }) => {
+    state.dataSrc = dataSrc
+  },
 }
 
 export const getters = {
@@ -273,11 +279,11 @@ export const actions = {
     commit('setLoadedStatus', { isLoaded: false })
 
     const dateForApi = format(state.currentWeekStartDay, 'DD-MM-YYYY')
-    const response = await fetch(`https://db2.gekkon-club.ru/api/calendar?from=${dateForApi}`)
+    const response = await fetch(`${state.dataSrc}/api/calendar?from=${dateForApi}`)
     
     commit('setLessons', await response.json())
     commit('setLoadedStatus', { isLoaded: true })
-    
+
     this._vm.$frame.sendHeight()
   },
 
