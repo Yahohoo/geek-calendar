@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <div id="master-class-embedded"></div>
+    <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
+    <script>
+      const schedStateKey = '__sched_state'
+      const mainSchedUrl = 'http://192.168.1.101:8080/'
+
+      function getSchedUrl() {
+        const urlParams = getUrlParams()
+        const schedParam = urlParams.get(schedStateKey)
+        const paramsPart = schedParam ? `?${schedStateKey}=${schedParam}` : ''
+        return mainSchedUrl + paramsPart
+      }
+
+
+      function getUrlParams() {
+        const href = window.location.href
+        const currentUrlParams = new window.URL(href).searchParams
+        return currentUrlParams
+      }
+
+      function updUrlParams(params) {
+        const currentUrlParams = getUrlParams()
+        currentUrlParams.delete(schedStateKey)
+
+        let currentParams = currentUrlParams.toString()
+        console.log(currentParams)
+        if (currentParams) {
+          currentParams += '&'
+        }
+
+        const newParams = `?${currentParams}${schedStateKey}=${encodeURI(JSON.stringify(params))}`
+        window.history.pushState({}, '', newParams)
+      }
+
+      function initIframe() {
+        const parent = new pym.Parent(
+          'master-class-embedded',
+          getSchedUrl(),
+          { trackscroll: true }
+        )
+      
+        parent.onMessage('new-state', updUrlParams)
+      }
+
+      initIframe()
+    </script>
+  </div>
+</body>
+</html>
