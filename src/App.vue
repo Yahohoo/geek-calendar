@@ -41,7 +41,7 @@ export default {
   watch: {
     paramsForSearchString(newParams) {
       this.$frame.sendMessage('new-state', encodeURI(JSON.stringify(newParams)))
-      window.history.pushState({}, '', `?_sched_state=${encodeURI(JSON.stringify(newParams))}`)
+      window.history.pushState({}, '', `?__sched_state=${encodeURI(JSON.stringify(newParams))}`)
     },
   },
 
@@ -53,7 +53,7 @@ export default {
     const { href } = window.location
     console.log(href)
     const params = new window.URL(href).searchParams
-    const state = JSON.parse(params.get('_sched_state'))
+    const state = JSON.parse(params.get('__sched_state'))
 
     if (state && state.filters) {
       this.updateFilters({ filters: state.filters })
