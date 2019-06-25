@@ -3,7 +3,7 @@
     v-show="isOpened"
     class="enroll-modal-box">
     <div
-      :style="{ top }"
+      :style="{ top: top + 'px' }"
       :class="data.themeClass"
       class="enroll-modal">
       <font-awesome-icon
@@ -261,7 +261,7 @@ export default {
   },
 
   mounted() {
-    this.$frame.onMessage('viewport-iframe-position', this.repositeModal)
+    this.$frame.onMessage('viewport-iframe-position', message => this.repositeModal(message))
   },
 
   methods: {
@@ -301,15 +301,15 @@ export default {
       })
     },
 
-    repositeModal: (message) => {
+    repositeModal(message) {
+      // debugger
       const parsedMessage = parsePositionMessage(message)
       const isMobile = parsedMessage.viewportWidth <= 480
       const margin = isMobile ? 50 : 100
       const top = parsedMessage.top > 0 ? margin : -parsedMessage.top + margin
-
-      // if (!this.isOpened) {
-      this.top = top
-      // }
+      if (!this.isOpened) {
+        this.top = top
+      }
     },
   },
 }
