@@ -11,8 +11,11 @@
     <div id="master-class-embedded"></div>
     <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
     <script>
+      const dataSrc = 'https://db2.gekkon-club.ru'
+      // const mainSchedUrl = 'http://5.101.77.221/schedule/dist/'
       const schedStateKey = '__sched_state'
       const mainSchedUrl = 'http://192.168.1.101:8080/'
+      // const mainSchedUrl = 'https://yahohoo.github.io/new-calendar/'
 
       function getSchedUrl() {
         const urlParams = getUrlParams()
@@ -38,7 +41,7 @@
           currentParams += '&'
         }
 
-        const newParams = `?${currentParams}${schedStateKey}=${encodeURI(JSON.stringify(params))}`
+        const newParams = `?${currentParams}${schedStateKey}=${params}`
         window.history.pushState({}, '', newParams)
       }
 
@@ -50,6 +53,7 @@
         )
       
         parent.onMessage('new-state', updUrlParams)
+        parent.onMessage('ready', () => parent.sendMessage('data-src', dataSrc))
       }
 
       initIframe()
