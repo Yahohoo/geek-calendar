@@ -24,9 +24,8 @@
             tag="div"
             class="tr-wrapper"
             appear
-            enter-active-class="animated fadeInUp">
-            <!-- leave-class="invis" -->
-            <!-- leave-active-class="fade"> -->
+            enter-active-class="animated fadeInUp"
+            @after-enter="sendHeight">
             <div
               v-if="!weekSchedule[index].length"
               key="free-day"
@@ -86,6 +85,10 @@ export default {
   },
   methods: {
     isToday,
+    sendHeight() {
+      console.log('sended')
+      this.$frame.sendHeight()
+    },
   },
 }
 </script>
