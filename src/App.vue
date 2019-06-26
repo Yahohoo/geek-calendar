@@ -51,6 +51,9 @@ export default {
       this.setDataSrc({ dataSrc })
       this.loadDataForWeek()
     })
+    if (process.env.NODE_ENV !== 'production') {
+      this.loadDataForWeek()
+    }
   },
 
   mounted() {
