@@ -27,7 +27,7 @@ import ru from 'date-fns/locale/ru'
 Vue.use(Vuex)
 
 export const state = {
-  dataSrc: null,
+  dataSrc: 'https://db2.gekkon-club.ru',
 
   lessons: [],
   isDataLoaded: false,
@@ -309,9 +309,9 @@ export function availableValues(lessons, path) {
 
   lessons.forEach((lesson) => {
     value = get(lesson, path)
-    if (!values.includes(value)) {
+    if (!values.includes(value) && value) {
       values.push(value)
-    }
+    } 
   })
 
   return values
