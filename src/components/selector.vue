@@ -9,9 +9,9 @@
     class="selector">
     <labeled-input
       :label="label"
-      :is-active="isActive">
+      :active="isActive">
       <div
-        class="main"
+        class="main bordered"
         @click="opened = !opened">
         <div
           v-if="selected.length"
@@ -38,7 +38,7 @@
       <transition name="dropdown">
         <div
           v-if="opened"
-          class="dropdown">
+          class="dropdown bordered">
           <label
             v-for="selection in selections"
             :key="selection.title"
@@ -158,12 +158,6 @@ $active: #7281f1;
   border-radius: 3px;
 }
 
-.selector-name {
-  top: 8px;
-  position: absolute;
-  background-color: #fff;
-  transition: all 0.3s ease;
-}
 
 .tip {
   font-size: 0.8rem;
@@ -192,26 +186,6 @@ $active: #7281f1;
 .fa-chevron-down {
   margin-left: 5px;
 }
-
-// .dropdown-enter-active, .dropdown-leave-active {
-//   transition: opacity .5s;
-// }
-// .dropdown-enter, .dropdown-leave-to /* .fade-leave-active до версии 2.1.8 */ {
-//   opacity: 0;
-// }
-
-// .dropdown-enter-active, .dropdown-leave-active {
-//   overflow: hidden;
-//   transition: all 1s ease-out;
-// }
-
-// .dropdown-enter, .dropdown-leave-to {
-//   max-height: 0;
-// }
-
-// .dropdown-enter-to {
-//   max-height: 300px;
-// }
 
 .dropdown-wrapper {
   position: relative;
@@ -245,7 +219,6 @@ $active: #7281f1;
 
 .all {
   font-weight: bolder;
-  // margin-bottom: 2px;
 }
 
 [type='checkbox'] {
@@ -265,24 +238,6 @@ $active: #7281f1;
 .filled {
   .fa-chevron-down {
     display: none;
-  }
-}
-
-.active {
-  .selector-name {
-    padding: 0px 2px;
-    top: -11px;
-    font-size: 0.9rem;
-    color: $active;
-  }
-
-  .main,
-  .dropdown {
-    border-color: $active;
-  }
-
-  .control {
-    color: $active;
   }
 }
 

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import 'animate.css/animate.min.css'
 import { format } from 'date-fns'
 import ru from 'date-fns/locale/ru'
-import VeeValidate, { Validator } from 'vee-validate'
+import VeeValidate from 'vee-validate'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -45,8 +45,8 @@ library.add(
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-Vue.use(VeeValidate)
-Validator.localize('ru')
+Vue.use(VeeValidate, { locale: 'ru' })
+// Validator.localize('ru')
 
 Vue.prototype.$frame = new pym.Child()
 

@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="{active: isActive}"
+    :class="{ active, invalid }"
     class="labeled-input">
     <label
       class="label">
@@ -13,7 +13,12 @@
 <script>
 export default {
   props: {
-    isActive: {
+    active: {
+      type: Boolean,
+      default: false,
+    },
+
+    invalid: {
       type: Boolean,
       default: false,
     },
@@ -28,6 +33,7 @@ export default {
 
 <style lang="scss" scoped>
   $active: #7281f1;
+  $invalid: #f44336;
 
   .labeled-input {
     position: relative;
@@ -49,6 +55,28 @@ export default {
       top: -9px;
       font-size: 0.9rem;
       color: $active;
+    }
+
+    .bordered {
+      border-color: $active;
+    }
+
+    .control {
+      color: $active;
+    }
+  }
+
+  .active.invalid {
+    .label {
+      color: $invalid;
+    }
+
+    .bordered {
+      border-color: $invalid;
+    }
+
+    .control {
+      color: $invalid;
     }
   }
 </style>
