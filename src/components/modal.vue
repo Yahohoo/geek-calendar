@@ -65,14 +65,16 @@
 
         <div
           class="modal-enroll modal-block">
-          <div class="modal-enroll-form">
+          <div
+            v-if="!(success || fail)"
+            class="modal-enroll-form">
             <labeled-input
-              :is-active="isNameActive"
+              :active="isActive('name')"
               class="enroll-field-wrap"
-              label="Имя">
+              label="Имя (обязательно)">
               <input
                 v-model="enrollForm.name"
-                class="enroll-input enroll-input-field"
+                class="bordered enroll-input enroll-input-field"
                 type="text"
                 required
                 @focus="enrollFormFocus.name = true"
@@ -80,15 +82,15 @@
             </labeled-input>
 
             <labeled-input
-              :is-active="isPhoneActive"
-              class="enroll-field-wrap"
-              label="Телефон">
+              :active="isActive('phone')"
+              :invalid="Boolean(errorMessage('phone'))"
+              :label="errorMessage('phone') || 'Телефон (обязательно)'"
+              class="enroll-field-wrap">
               <input
-                ref="phone"
                 v-model="enrollForm.phone"
-                v-validate="{ required: true, regex: /^\+7[0-9]{10}}$/ }"
-                data-vv-as="Номер телефона"
-                class="enroll-input enroll-input-field"
+                v-validate="'required|phone'"
+                class="bordered enroll-input enroll-input-field"
+                name="phone"
                 type="tel"
                 title="+79996662233"
                 @focus="enrollFormFocus.phone = true"
@@ -96,30 +98,42 @@
             </labeled-input>
 
             <labeled-input
-              :is-active="isEmailActive"
+              :active="isActive('email')"
+              :invalid="Boolean(errorMessage('email'))"
               class="enroll-field-wrap"
-              label="Email">
+              :label="errorMessage('email') || 'Email'">
               <input
                 v-model="enrollForm.email"
                 v-validate
-                data-vv-as="Email"
-                class="enroll-input enroll-input-field"
+                class="bordered enroll-input enroll-input-field"
                 type="email"
+                name="email"
                 @focus="enrollFormFocus.email = true"
                 @blur="enrollFormFocus.email = false">
             </labeled-input>
 
             <button
+              :class="{ disabled: !isFormValid || sendingRequest }"
+              :disabled="!isFormValid || sendingRequest"
               class="modal-button enroll-input submit-enroll"
               @click="sendEnrollRequest">
               Записаться
+              <div
+                v-if="sendingRequest"
+                class="modal-button-loader">
+                <c-loader />
+              </div>
             </button>
           </div>
-          <div class="enroll-success enroll-status">
+          <div
+            v-else-if="success"
+            class="enroll-success enroll-status">
             Спасибо за заявку!
             <br>Мы свяжемся с вами в ближайшее время.
           </div>
-          <div class="enroll-fail enroll-status">
+          <div
+            v-else
+            class="enroll-fail enroll-status">
             К сожалению, что-то пошло не так и мы не смогли принять вашу
             заявку.
             <br>Вы можете связаться с нами по телефону +7(495) 255-57-10
@@ -167,7 +181,9 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex'
+import { mapFields } from 'vee-validate'
 import labeledInput from './labeled-input.vue'
+import cLoader from './c-loader.vue'
 
 function parsePositionMessage(message) {
   message = message.split(' ')
@@ -185,27 +201,42 @@ function parsePositionMessage(message) {
 export default {
   components: {
     labeledInput,
+    cLoader,
   },
 
   data() {
     return {
       isFormOpened: false,
+
       currentTab: null,
+
       enrollForm: {
         name: '',
         email: '',
         phone: '',
       },
+
       enrollFormFocus: {
         name: false,
         email: false,
         phone: false,
       },
+
       top: 0,
+
+      errorMessages: {
+        email: 'Некорректный email',
+        phone: 'Некорректный номер',
+      },
+
+      sendingRequest: false,
+      success: false,
+      fail: false,
     }
   },
 
   computed: {
+    ...mapFields(['email', 'phone']),
     ...mapState({
       isOpened: 'isModalOpened',
       data: 'modalData',
@@ -258,10 +289,47 @@ export default {
     isPhoneActive() {
       return Boolean(this.enrollForm.phone || this.enrollFormFocus.phone)
     },
+
+    isFormValid() {
+      return this.enrollForm.name
+      && (this.phone.changed || this.phone.valid)
+      && (!this.email.changed || this.email.valid)
+    },
+
+    enrollFormNormalized() {
+      const { name, email } = this.enrollForm
+
+      let phoneCleaned = this.enrollForm.phone.replace(/\D/g, '')
+      const len = phoneCleaned.length
+
+      if (len > 10) {
+        phoneCleaned = phoneCleaned.slice(-10)
+      }
+
+      phoneCleaned = `+7${phoneCleaned}`
+
+      return { name, email, phone: phoneCleaned }
+      // Возможно, не пригодится никогда
+      // const parts = phoneCleaned.match(/(\d{3})(\d{3})(\d{2})(\d{2})/)
+      // const phoneMasked = `+7 (${parts[1]}) ${parts[2]}-${parts[3]}-${parts[4]}`
+
+      // return phoneMasked
+    },
   },
 
   mounted() {
     this.$frame.onMessage('viewport-iframe-position', message => this.repositeModal(message))
+
+    this.$validator.extend('phone', (phone) => {
+      if (!phone.match(/^[\d+\-() ]{10,18}$/)) return false
+
+      const phoneCleaned = phone.replace(/\D/g, '')
+
+      const len = phoneCleaned.length
+      if (len > 12 || len < 10) return false
+
+      return true
+    })
   },
 
   methods: {
@@ -281,28 +349,36 @@ export default {
     },
 
     sendEnrollRequest() {
+      this.sendingRequest = true
+
       const form = new FormData()
 
-      const data = Object.entries(Object.assign(
-        {}, this.formMetaData, this.enrollForm,
-      ))
+      const data = Object.entries({ ...this.formMetaData, ...this.enrollFormNormalized })
 
       data.forEach(bite => form.append(...bite))
 
       fetch(
-        'https://db2.gekkon-club.ru/api/add-lead',
+        'https://jsonplaceholder.typicode.com/todos',
+        // 'https://db2.gekkon-club.ru/api/add-lead',
         { method: 'POST', body: form },
       ).then((resp) => {
         if (resp.ok) {
-          console.log('Каеф')
+          this.success = true
+          setTimeout(() => { this.success = false }, 10000)
         } else {
-          console.log('Плоха')
+          this.fail = true
+          setTimeout(() => { this.fail = false }, 10000)
         }
+
+        this.sendingRequest = false
       })
     },
 
+    isActive(field) {
+      return Boolean(this.enrollForm[field] || this.enrollFormFocus[field])
+    },
+
     repositeModal(message) {
-      // debugger
       const parsedMessage = parsePositionMessage(message)
       const isMobile = parsedMessage.viewportWidth <= 480
       const margin = isMobile ? 50 : 100
@@ -310,6 +386,10 @@ export default {
       if (!this.isOpened) {
         this.top = top
       }
+    },
+
+    errorMessage(field) {
+      return this[field].changed && this.errors.first(field) && this.errorMessages[field]
     },
   },
 }
@@ -510,17 +590,36 @@ export default {
   }
 
   .modal-button {
-    background-color: #fc7878;
+    background: #fc7878;
     border: none;
     color: #ffffff;
     box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
     cursor: pointer;
+    width: auto;
+    padding: 10px 20px;
+    font-size: 1rem;
+    position: relative;
+  }
+
+  .modal-button.disabled {
+    cursor: default;
+    background: #ededed;
+    color: #7f8285;;
+  }
+
+  .modal-button-loader {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
   }
 
   .enroll-status {
     text-align: center;
     padding: 20px 0;
-    display: none;
   }
   .enroll-success {
     color: #43a200;
@@ -532,7 +631,7 @@ export default {
 
   .modal-about-tabs {
     display: flex;
-    border-bottom: 2px solid $background-accent; // цвет фона
+    border-bottom: 2px solid $background-accent;
     margin-bottom: 5px;
   }
 
