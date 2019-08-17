@@ -46,9 +46,7 @@
     <div
       v-if="!$store.state.isDataLoaded"
       class="preloader">
-      <div class="lds-roller">
-        <div /><div /><div /><div /><div /><div /><div /><div />
-      </div>
+      <c-loader :style="{ width: '60px', height: '60px' }" />
     </div>
   </div>
 </template>
@@ -57,11 +55,13 @@
 import { mapGetters } from 'vuex'
 import { getISODay, isToday } from 'date-fns'
 import eventCard from './event-card.vue'
+import cLoader from './c-loader.vue'
 
 export default {
   name: 'EventsGrid',
   components: {
     eventCard,
+    cLoader,
   },
   data() {
     return {
@@ -86,7 +86,6 @@ export default {
   methods: {
     isToday,
     sendHeight() {
-      console.log('sended')
       this.$frame.sendHeight()
     },
   },
