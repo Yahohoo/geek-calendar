@@ -279,7 +279,7 @@ export const actions = {
     commit('setLoadedStatus', { isLoaded: false })
 
     const dateForApi = format(state.currentWeekStartDay, 'DD-MM-YYYY')
-    const response = await fetch(`${state.dataSrc}/api/calendar?from=${dateForApi}`)
+    const response = await fetch(`${state.dataSrc}/api/calendar?from=${dateForApi}`, { cache: 'no-cache' })
     
     commit('setLessons', await response.json())
     commit('setLoadedStatus', { isLoaded: true })
