@@ -9,6 +9,11 @@
 
 <script>
 import { mapActions, mapMutations, mapState } from 'vuex'
+import {
+  compressToEncodedURIComponent as compress,
+  decompressFromEncodedURIComponent as decompress,
+} from 'lz-string'
+
 import modal from './components/modal.vue'
 import selectors from './components/selectors'
 import controlPanel from './components/control-panel.vue'
@@ -40,8 +45,9 @@ export default {
 
   watch: {
     paramsForSearchString(newParams) {
-      this.$frame.sendMessage('new-state', encodeURI(JSON.stringify(newParams)))
-      window.history.pushState({}, '', `?__sched_state=${encodeURI(JSON.stringify(newParams))}`)
+      const compressedParams = compress(JSON.stringify(newParams))
+      this.$frame.sendMessage('new-state', compressedParams)
+      window.history.pushState({}, '', `?__sched_state=${compressedParams}`)
     },
   },
 
@@ -59,7 +65,7 @@ export default {
   mounted() {
     const { href } = window.location
     const params = new window.URL(href).searchParams
-    const state = JSON.parse(params.get('__sched_state'))
+    const state = JSON.parse(decompress(params.get('__sched_state')))
 
     if (state && state.filters) {
       this.updateFilters({ filters: state.filters })
