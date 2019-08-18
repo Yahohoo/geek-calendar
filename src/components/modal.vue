@@ -358,8 +358,7 @@ export default {
       data.forEach(bite => form.append(...bite))
 
       fetch(
-        'https://jsonplaceholder.typicode.com/todos',
-        // 'https://db2.gekkon-club.ru/api/add-lead',
+        'https://db2.gekkon-club.ru/api/add-lead',
         { method: 'POST', body: form },
       ).then((resp) => {
         if (resp.ok) {
