@@ -280,8 +280,11 @@ export const actions = {
 
     const dateForApi = format(state.currentWeekStartDay, 'DD-MM-YYYY')
     const response = await fetch(`${state.dataSrc}/api/calendar?from=${dateForApi}`, { cache: 'no-cache' })
-    
-    commit('setLessons', await response.json())
+
+    const nonIndividualLessons = (await response.json())
+      .filter(lesson => !lesson.baseLesson.name.toLowerCase().includes('индивидуальн'))
+
+    commit('setLessons', nonIndividualLessons)
     commit('setLoadedStatus', { isLoaded: true })
 
     this._vm.$frame.sendHeight()
