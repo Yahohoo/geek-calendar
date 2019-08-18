@@ -178,7 +178,7 @@ export default {
         title: this.title,
         address: this.address,
         date: this.date,
-        cover: this.cover,
+        cover: this.event.cover,
         room: this.room,
         teacher: this.teacher,
         id: this.event.id,
@@ -282,7 +282,6 @@ export default {
     justify-content: center;
     font-size: 0.7rem;
     color: gray;
-    margin-right: 5px;
   }
 
   .description-item {
