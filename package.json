@@ -7,12 +7,13 @@
     "test": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "api": "http GET https://db2.gekkon-club.ru/api/calendar from==05-04-2019 > ./src/api.json",
-    "prod": "npm-run-all build dep",
-    "dep": "node deployer.js",
+    "prod": "npm-run-all build rmfiles rmfolders dep",
     "dev": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit",
-    "cts": "scp -r src-cordova/platforms/android/app/build/outputs/apk/release/ karpal@karpal:/var/www/html",
-    "privprod": "npm-run-all "
+    "rmfiles": "echo 'rm /schedule/dist/*.*' | sftp tgrebnev@5.101.77.221",
+    "rmfolders": "echo 'rm /schedule/dist/*/*' | sftp tgrebnev@5.101.77.221",
+    "putfiles": "echo 'put -r /mnt/c/koder/geek-calendar/dist/ /schedule/' | sftp tgrebnev@5.101.77.221",
+    "dep": "npm-run-all rmfiles rmfolders putfiles"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.6.3",
