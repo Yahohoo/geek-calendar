@@ -12,10 +12,9 @@
     <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
     <script>
       const dataSrc = 'https://db2.gekkon-club.ru'
-      // const mainSchedUrl = 'http://5.101.77.221/schedule/dist/'
+      const mainSchedUrl = 'https://schedule.geekcrm.ru/schedule/dist/'
+      // 'http://192.168.1.101:8080/'
       const schedStateKey = '__sched_state'
-      const mainSchedUrl = 'http://192.168.1.101:8080/'
-      // const mainSchedUrl = 'https://yahohoo.github.io/new-calendar/'
 
       function getSchedUrl() {
         const urlParams = getUrlParams()
@@ -36,7 +35,7 @@
         currentUrlParams.delete(schedStateKey)
 
         let currentParams = currentUrlParams.toString()
-        console.log(currentParams)
+
         if (currentParams) {
           currentParams += '&'
         }
