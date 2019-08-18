@@ -74,7 +74,7 @@
               label="Имя (обязательно)">
               <input
                 v-model="enrollForm.name"
-                class="bordered enroll-input enroll-input-field"
+                class="enroll-input enroll-input-field"
                 type="text"
                 required
                 @focus="enrollFormFocus.name = true"
@@ -89,7 +89,7 @@
               <input
                 v-model="enrollForm.phone"
                 v-validate="'required|phone'"
-                class="bordered enroll-input enroll-input-field"
+                class="enroll-input enroll-input-field"
                 name="phone"
                 type="tel"
                 title="+79996662233"
@@ -105,7 +105,7 @@
               <input
                 v-model="enrollForm.email"
                 v-validate
-                class="bordered enroll-input enroll-input-field"
+                class="enroll-input enroll-input-field"
                 type="email"
                 name="email"
                 @focus="enrollFormFocus.email = true"
@@ -485,8 +485,8 @@ export default {
   }
 
   .modal-header-cover {
-    display: block;
     @include rounded-square(70px);
+    flex-shrink: 0;
     object-fit: cover;
   }
 
@@ -574,13 +574,7 @@ export default {
     width: 100%;
     height: 40px;
     border-radius: 3px;
-    border: 1px solid #7f8285;
-  }
-
-  .active {
-    .enroll-input {
-      border-color: #7281f1;
-    }
+    border: 1px solid var(--bd-color);
   }
 
   .enroll-input-field {

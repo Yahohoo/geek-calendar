@@ -86,6 +86,15 @@ export default {
 </script>
 
 <style lang="scss">
+:root {
+  --text-color-default: #212121;
+  --bd-color-default: #6a6a6a;
+  --active-color: #7281f1;
+  --invalid-color: #f44336;
+  --bd-color: var(--bd-color-default);
+  --text-color: var(--text-color-default)
+}
+
 * {
   box-sizing: border-box;
 }

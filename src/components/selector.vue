@@ -11,7 +11,7 @@
       :label="label"
       :active="isActive">
       <div
-        class="main bordered"
+        class="main"
         @click="opened = !opened">
         <div
           v-if="selected.length"
@@ -33,31 +33,31 @@
             class="icon" />
         </div>
       </div>
+      <div class="dropdown-wrapper">
+        <transition name="dropdown">
+          <div
+            v-if="opened"
+            class="dropdown">
+            <label
+              v-for="selection in selections"
+              :key="selection.title"
+              class="item">
+              <input
+                v-model="selected"
+                :value="selection"
+                type="checkbox">
+              <div class="selection">{{ selection.title }}</div>
+              <div class="checkbox">
+                <font-awesome-icon
+                  v-if="some(selected, selection)"
+                  icon="check"
+                  class="icon" />
+              </div>
+            </label>
+          </div>
+        </transition>
+      </div>
     </labeled-input>
-    <div class="dropdown-wrapper">
-      <transition name="dropdown">
-        <div
-          v-if="opened"
-          class="dropdown bordered">
-          <label
-            v-for="selection in selections"
-            :key="selection.title"
-            class="item">
-            <input
-              v-model="selected"
-              :value="selection"
-              type="checkbox">
-            <div class="selection">{{ selection.title }}</div>
-            <div class="checkbox">
-              <font-awesome-icon
-                v-if="some(selected, selection)"
-                icon="check"
-                class="icon" />
-            </div>
-          </label>
-        </div>
-      </transition>
-    </div>
   </div>
 </template>
 
@@ -154,7 +154,7 @@ $active: #7281f1;
   justify-content: space-between;
   padding: 0 15px;
   height: 40px;
-  border: 1px solid #6a6a6a;
+  border: 1px solid var(--bd-color);
   border-radius: 3px;
 }
 
@@ -177,6 +177,7 @@ $active: #7281f1;
   position: absolute;
   right: 10px;
   cursor: pointer;
+  color: var(--border-color)
 }
 
 .icon {
@@ -195,7 +196,7 @@ $active: #7281f1;
   width: 100%;
   background-color: #fff;
   position: absolute;
-  border: 1px solid #000;
+  border: 1px solid var(--bd-color);
   border-top: none;
   border-radius: 0 0 3px 3px;
   list-style: none;
